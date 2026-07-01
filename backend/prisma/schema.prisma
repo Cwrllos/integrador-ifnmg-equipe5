@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum TipoLeitura {
+  ENTRADA
+  SAIDA
+}
+
+model Administrador {
+  id_adm    Int        @id @default(autoincrement())
+  nome      String
+  email     String     @unique
+  senha     String
+  empresa   String
+  ambientes Ambiente[]
+
+  @@map("administradores")
+}
+
+model Ambiente {
+  id_ambiente Int    @id @default(autoincrement())
+  nome        String
+  max_pessoas Int
+  id_adm      Int
+
+  administrador Administrador @relation(fields: [id_adm], references: [id_adm])
+  sensores      Sensor[]
+  leituras      Leitura[]
+  ocupacao      Ocupacao?
+  alertas       LogAlerta[]
+
+  @@map("ambientes")
+}
+
+model Sensor {
+  id_sensor      Int         @id @default(autoincrement())
+  tipo           TipoLeitura
+  horario_inicio String?
+  horario_fim    String?
+  id_ambiente    Int
+
+  ambiente Ambiente  @relation(fields: [id_ambiente], references: [id_ambiente])
+  leituras Leitura[]
+
+  @@unique([id_ambiente, tipo])
+  @@map("sensores")
+}
+
+model Leitura {
+  id_leitura  Int         @id @default(autoincrement())
+  tipo        TipoLeitura
+  data_hora   DateTime    @default(now())
+  id_sensor   Int
+  id_ambiente Int
+
+  sensor   Sensor   @relation(fields: [id_sensor], references: [id_sensor])
+  ambiente Ambiente @relation(fields: [id_ambiente], references: [id_ambiente])
+
+  @@index([id_sensor])
+  @@index([id_ambiente])
+  @@index([data_hora])
+  @@map("leituras")
+}
+
+model Ocupacao {
+  id_ocupacao        Int      @id @default(autoincrement())
+  id_ambiente        Int      @unique
+  ocupacao_atual     Int      @default(0)
+  ultima_atualizacao DateTime @updatedAt
+
+  ambiente Ambiente @relation(fields: [id_ambiente], references: [id_ambiente])
+
+  @@map("ocupacoes")
+}
+
+model LogAlerta {
+  id_alerta        Int      @id @default(autoincrement())
+  alerta_seguranca Boolean  @default(true)
+  mensagem         String
+  data_hora        DateTime @default(now())
+  id_ambiente      Int
+
+  ambiente Ambiente @relation(fields: [id_ambiente], references: [id_ambiente])
+
+  @@index([id_ambiente])
+  @@map("logs_alertas")
+}
