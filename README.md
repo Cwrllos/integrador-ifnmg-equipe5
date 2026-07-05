@@ -1,4 +1,4 @@
-# OccupaControl : Monitoramento e Registro de Pessoas 🚷
+# OccupaControl: Monitoramento e Registro de Pessoas 🚷
 Este trabalho apresenta o desenvolvimento do OccupaControl, um sistema automatizado de monitoramento de ocupação
 baseado na plataforma Arduino.
 ______________________________________________________________________________________________
