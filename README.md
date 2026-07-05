@@ -25,11 +25,6 @@ Disciplina: Práticas Profissionais Integradoras I e II
 
 Docentes: Prof. Me. Luiz Filipe Carreiro Salazar e Prof. Me. Felipe Túlio de Castro
 
-## Objetivos
-- Preparar os discentes para situações que envolvam o desenvolvimento de soluções tecnológicas sem o controle do ambiente acadêmico;
-- Estimular a independência na construção de conhecimentos técnicos e comportamentais;
-- Desenvolver habilidades que envolvam a comunicação oral e escrita de produtos/negócios desenvolvidos.
-
 ## Benefícios
 O principal benefício é permitir que os(as) acadêmicos(as) possam colocar em prática os conceitos de desenvolvimento de software em uma demanda real. Além disso, vocês terão uma experiência de trabalho em equipe.
 
