@@ -1,4 +1,23 @@
-# Enunciado do Projeto Integrador 2026
+# OccupaControl : Monitoramento e Registro de Pessoas 🚷
+Este trabalho apresenta o desenvolvimento do OccupaControl, um sistema automatizado de monitoramento de ocupação
+baseado na plataforma Arduino.
+______________________________________________________________________________________________
+## Sobre :❓
+O projeto utiliza dois sensores ultrassônicos HC-SR04 para
+identificar pessoas que entram e saem de um ambiente, realizando a contagem automática e
+atualizando o número de ocupantes. Além disso, o sistema utiliza LEDs e um buzzer para
+fornecer sinais visuais e sonoros a cada detecção realizada.
+_______________________________________________________________________________________________
+## Objetivos 🎯
+• Detectar a entrada e a saída de pessoas.
+• Contabilizar automaticamente o fluxo de pessoas.
+• Exibir a quantidade de ocupantes em tempo real.
+• Armazenar os dados em banco de dados.
+• Desenvolver um dashboard para visualização das informações.
+• Implementar autenticação segura de usuários.
+• Validar o funcionamento do sistema por meio de testes.
+
+________________________________________________________________________________________________
 
 Curso: Tecnologia em Análise e Desenvolvimento de Sistemas
 
