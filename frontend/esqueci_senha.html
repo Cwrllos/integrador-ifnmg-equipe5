@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>OccupaControl - Esqueci minha senha</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f9f9fc",
+                        "on-primary-fixed": "#2e1500",
+                        "secondary": "#156e00",
+                        "on-secondary-fixed-variant": "#0d5300",
+                        "outline": "#857467",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#534438",
+                        "on-surface": "#1a1c1e",
+                        "on-background": "#1a1c1e",
+                        "secondary-container": "#3bfe00",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#35e500",
+                        "primary-container": "#a8641f",
+                        "on-tertiary-fixed-variant": "#255100",
+                        "surface-container-low": "#f3f3f6",
+                        "inverse-primary": "#ffb77a",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#032100",
+                        "inverse-on-surface": "#f0f0f3",
+                        "surface-container-high": "#e8e8ea",
+                        "tertiary": "#326800",
+                        "primary-fixed-dim": "#ffb77a",
+                        "surface-dim": "#dadadc",
+                        "tertiary-fixed": "#92fc40",
+                        "outline-variant": "#d8c3b3",
+                        "on-tertiary-container": "#f9ffec",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#fffbff",
+                        "primary-fixed": "#ffdcc2",
+                        "surface-bright": "#f9f9fc",
+                        "on-secondary-container": "#167100",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e2e2e5",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#6d3a00",
+                        "on-tertiary-fixed": "#0b2000",
+                        "error": "#ba1a1a",
+                        "surface-container": "#eeeef0",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#418400",
+                        "secondary-fixed": "#79ff58",
+                        "primary": "#8a4c04",
+                        "surface": "#f9f9fc",
+                        "surface-variant": "#e2e2e5",
+                        "tertiary-fixed-dim": "#77df1e",
+                        "surface-tint": "#8d4f07",
+                        "inverse-surface": "#2f3133"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "card-padding": "20px",
+                        "margin-desktop": "32px",
+                        "base": "8px",
+                        "sidebar-width": "260px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Hanken Grotesk"],
+                        "label-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "numeric-data": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "numeric-data": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+    </style>
+</head>
+<body class="bg-background min-h-screen flex items-center justify-center p-margin-desktop text-on-surface">
+<main class="w-full max-w-md">
+<!-- Logo / Branding Area -->
+<div class="text-center mb-8">
+<div class="inline-flex items-center justify-center w-16 h-16 bg-primary-container text-on-primary-container rounded-lg mb-4"><img alt="Logo OccupaControl" class="w-12 h-12 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLvEck_6h265t-gNtxbzeamcgtbSZ0D1ahG5KA-Dt3FOVgovd5cx0RvRr7_ZN8GnbcQj0skrAyzBQDBEUIzLlj9J0LuXXzboCRsFQjd4Tepn7Vp6vJFpzYrAPJuGLnuV2nvxza_tsrf3229fCN_JKdJJxSLsGf9zooDHSIVR1sskgs932KgTWkJSjrrNJTMI8fjT5PKt4mVX3QkMJkv2Gvw7xM24HXt2v5gde0lEbnaCWq0V4kvuwfJzHggp"></div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">OccupaControl</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Gestão Logística de Campus</p>
+</div>
+<!-- Recovery Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-8 shadow-[0px_4px_12px_rgba(0,0,0,0.1)] relative overflow-hidden">
+<!-- Decorative Top Accent -->
+<div class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
+<div class="mb-8">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Esqueci minha senha</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Insira o e-mail associado à sua conta de administrador. Enviaremos um link de recuperação seguro para redefinir seu acesso ao sistema.
+                </p>
+</div>
+<form class="flex flex-col gap-6">
+<!-- Email Field -->
+<div class="flex flex-col gap-2">
+<label class="font-label-lg text-label-lg text-on-surface" for="email">E-mail Corporativo</label>
+<input class="w-full px-4 py-3 bg-surface border border-outline rounded-lg focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant outline-none transition-colors" id="email" name="email" placeholder="admin@campus.edu.br" required="" type="email">
+</div>
+<!-- Submit Button -->
+<a class="w-full bg-[#C27933] hover:bg-primary text-white font-label-lg text-label-lg py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2 mt-2 cursor-pointer" href="alterar_senha.html">Enviar Link</button>
+                    Enviar link
+                </a>
+</form>
+<div class="mt-8 text-center">
+<a class="font-label-lg text-label-lg text-[#C27933] hover:text-primary transition-colors inline-flex items-center gap-2 cursor-pointer" href="login.html">Voltar para o Login</a>
+<span class="material-symbols-outlined" style="font-size: 18px;">arrow_back</span>
+                    Voltar para o Login
+                </a>
+</div>
+</div>
+<!-- Security Badge -->
+<div class="mt-8 text-center flex items-center justify-center gap-2 text-on-surface-variant opacity-80">
+<span class="material-symbols-outlined" style="font-size: 16px;">lock</span>
+<span class="font-label-sm text-label-sm">Conexão Segura e Criptografada</span>
+</div>
+</main>
+
+
+</body></html>

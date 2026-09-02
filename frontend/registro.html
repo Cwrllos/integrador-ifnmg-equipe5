@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OccupaControl - Novo Registro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#2f3133",
+                        "on-tertiary-container": "#f9ffec",
+                        "on-secondary-fixed": "#032100",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#534438",
+                        "on-secondary-fixed-variant": "#0d5300",
+                        "surface-container": "#eeeef0",
+                        "on-primary-container": "#fffbff",
+                        "on-primary-fixed-variant": "#6d3a00",
+                        "tertiary-fixed-dim": "#77df1e",
+                        "surface-dim": "#dadadc",
+                        "surface-tint": "#8d4f07",
+                        "on-primary-fixed": "#2e1500",
+                        "tertiary": "#326800",
+                        "tertiary-container": "#418400",
+                        "on-secondary-container": "#167100",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#ffb77a",
+                        "primary-fixed": "#ffdcc2",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f3f3f6",
+                        "on-tertiary-fixed-variant": "#255100",
+                        "on-surface": "#1a1c1e",
+                        "primary": "#8a4c04",
+                        "inverse-primary": "#ffb77a",
+                        "background": "#f9f9fc",
+                        "on-background": "#1a1c1e",
+                        "outline": "#857467",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e2e2e5",
+                        "outline-variant": "#d8c3b3",
+                        "surface-variant": "#e2e2e5",
+                        "secondary-fixed": "#79ff58",
+                        "secondary-container": "#3bfe00",
+                        "secondary": "#156e00",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f9f9fc",
+                        "on-tertiary-fixed": "#0b2000",
+                        "on-error": "#ffffff",
+                        "primary-container": "#a8641f",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#35e500",
+                        "surface-container-high": "#e8e8ea",
+                        "surface": "#f9f9fc",
+                        "inverse-on-surface": "#f0f0f3",
+                        "tertiary-fixed": "#92fc40"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "base": "8px",
+                        "sidebar-width": "260px",
+                        "margin-mobile": "16px",
+                        "card-padding": "20px",
+                        "margin-desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "numeric-data": ["Hanken Grotesk"],
+                        "label-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500"}],
+                        "numeric-data": ["28px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background h-screen w-screen overflow-hidden flex flex-col md:flex-row antialiased">
+<!-- Right Side: Registration Form -->
+<div class="w-full h-screen bg-background flex flex-col items-center justify-center p-6 md:p-12 overflow-y-auto">
+<!-- Form Card -->
+<div class="w-full max-w-md bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] p-8">
+<div class="mb-8">
+<div class="flex items-center justify-center gap-3 mb-6">
+<img alt="OccupaControl Logo" class="h-11 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLvEck_6h265t-gNtxbzeamcgtbSZ0D1ahG5KA-Dt3FOVgovd5cx0RvRr7_ZN8GnbcQj0skrAyzBQDBEUIzLlj9J0LuXXzboCRsFQjd4Tepn7Vp6vJFpzYrAPJuGLnuV2nvxza_tsrf3229fCN_JKdJJxSLsGf9zooDHSIVR1sskgs932KgTWkJSjrrNJTMI8fjT5PKt4mVX3QkMJkv2Gvw7xM24HXt2v5gde0lEbnaCWq0V4kvuwfJzHggp"/>
+<span class="font-headline-md text-headline-md text-primary">OccupaControl</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Criar Conta</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Preencha os dados abaixo para registrar um novo administrador no sistema.</p>
+</div>
+<form action="#" class="space-y-5" method="POST">
+<div class="flex items-center gap-3 p-4 mb-5 bg-red-50 border border-red-200 rounded-lg hidden">
+<span class="material-symbols-outlined text-red-600">error</span>
+<p class="font-body-md text-body-md text-red-700">Por favor, preencha todos os campos obrigatórios</p>
+</div>
+<!-- Nome Completo -->
+<div>
+<label class="block font-label-lg text-label-lg text-on-surface mb-1.5" for="fullName">Nome Completo</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant">person</span>
+</div>
+<input class="w-full pl-10 pr-3 py-2 bg-surface-container-lowest border rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface transition-colors" id="fullName" name="fullName" required="" type="text"/>
+</div>
+</div>
+<!-- E-mail Administrador -->
+<div>
+<label class="block font-label-lg text-label-lg text-on-surface mb-1.5" for="email">E-mail Administrador</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant">mail</span>
+</div>
+<input class="w-full pl-10 pr-3 py-2 bg-surface-container-lowest border rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface transition-colors" id="email" name="email" required="" type="email"/>
+<p class="mt-1 text-red-600 font-label-sm text-label-sm hidden">E-mail inválido</p>
+</div>
+</div>
+<!-- Departamento -->
+<div>
+<label class="block font-label-lg text-label-lg text-on-surface mb-1.5" for="department">Departamento</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant">domain</span>
+</div>
+<select class="w-full pl-10 pr-10 py-2 bg-surface-container-lowest border rounded appearance-none focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface transition-colors cursor-pointer" id="department" name="department" required="">
+<option disabled="" selected="" value="">Selecione um departamento</option>
+<option value="logistics">Logística</option>
+<option value="security">Segurança</option>
+<option value="admin">Administração Geral</option>
+<option value="facilities">Manutenção Predial</option>
+</select>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<!-- Senha -->
+<div>
+<label class="block font-label-lg text-label-lg text-on-surface mb-1.5" for="password">Senha</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant">lock</span>
+</div>
+<input class="w-full pl-10 pr-10 py-2 bg-surface-container-lowest border rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface transition-colors" id="password" name="password" required="" type="password"/>
+<p class="mt-1 text-red-600 font-label-sm text-label-sm hidden">A senha deve ter no mínimo 8 caracteres</p>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-on-surface-variant hover:text-primary transition-colors focus:outline-none cursor-pointer" type="button">
+<span class="material-symbols-outlined">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Confirmar Senha -->
+<div>
+<label class="block font-label-lg text-label-lg text-on-surface mb-1.5" for="confirmPassword">Confirmar Senha</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant">lock</span>
+</div>
+<input class="w-full pl-10 pr-10 py-2 bg-surface-container-lowest border rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface transition-colors" id="confirmPassword" name="confirmPassword" required="" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-on-surface-variant hover:text-primary transition-colors focus:outline-none cursor-pointer" type="button">
+<span class="material-symbols-outlined">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Termos -->
+<div class="flex items-start mt-4">
+<div class="flex items-center h-5">
+<input class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary focus:ring-offset-surface bg-surface-container-lowest cursor-pointer" id="terms" name="terms" required="" type="checkbox"/>
+</div>
+<div class="ml-2 text-sm">
+<label class="font-body-md text-body-md text-on-surface-variant cursor-pointer" for="terms">
+                            Concordo com as políticas de acesso e segurança do sistema.
+                        </label>
+</div>
+</div>
+<!-- Submit Button -->
+<div class="pt-4">
+<button class="w-full flex justify-center py-3 px-4 border border-transparent rounded bg-[#326800] hover:bg-[#418400] text-on-primary font-label-lg text-label-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#326800] transition-colors items-center cursor-pointer" onclick="const f=document.querySelector('form');const b=f.querySelector('div:first-child');let e=0;['fullName','email','department','password','confirmPassword'].forEach(id=&gt;{const i=document.getElementById(id);const m=i.nextElementSibling?.tagName==='P'?i.nextElementSibling:null;if(!i.value){i.classList.add('border-red-500');if(m)m.classList.remove('hidden');e++}else{i.classList.remove('border-red-500');if(m)m.classList.add('hidden')}});if(!document.getElementById('terms').checked)e++;if(e&gt;0){b.classList.remove('hidden')}else{b.classList.add('hidden');window.location.href='dashboard.html'}">Registrar Administrador</button> type="button">Registrar Administrador</button>
+</div>
+</form>
+<!-- Back to Login -->
+<div class="mt-8 pt-6 border-t border-outline-variant text-center">
+<a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary hover:text-primary-container transition-colors cursor-pointer" href="login.html">Voltar para o Login</a>
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                    Voltar para o Login
+                </a>
+</div>
+</div>
+<!-- Footer Info -->
+<div class="mt-8 text-center text-on-surface-variant font-label-sm text-label-sm opacity-70">© 2024 OccupaControl Logistics. Acesso Restrito.</div>
+</div>
+</body></html>

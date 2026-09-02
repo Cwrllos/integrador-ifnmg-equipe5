@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Smart Campus - Controle de Fluxo</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "tertiary-fixed-dim": "#77df1e",
+                "secondary-container": "#3bfe00",
+                "secondary-fixed": "#79ff58",
+                "primary-fixed-dim": "#ffb77a",
+                "on-primary-container": "#fffbff",
+                "on-secondary-container": "#167100",
+                "on-primary": "#ffffff",
+                "primary": "#8a4c04",
+                "surface-container-highest": "#e2e2e5",
+                "on-primary-fixed": "#2e1500",
+                "inverse-primary": "#ffb77a",
+                "primary-fixed": "#ffdcc2",
+                "on-surface-variant": "#534438",
+                "on-secondary-fixed-variant": "#0d5300",
+                "on-error-container": "#93000a",
+                "error-container": "#ffdad6",
+                "on-tertiary": "#ffffff",
+                "on-error": "#ffffff",
+                "on-tertiary-fixed-variant": "#255100",
+                "tertiary": "#326800",
+                "on-tertiary-container": "#f9ffec",
+                "surface-container-low": "#f3f3f6",
+                "surface-container-high": "#e8e8ea",
+                "on-secondary-fixed": "#032100",
+                "surface-variant": "#e2e2e5",
+                "surface-bright": "#f9f9fc",
+                "on-surface": "#1a1c1e",
+                "outline": "#857467",
+                "secondary": "#156e00",
+                "error": "#ba1a1a",
+                "surface-dim": "#dadadc",
+                "primary-container": "#a8641f",
+                "on-tertiary-fixed": "#0b2000",
+                "inverse-surface": "#2f3133",
+                "surface": "#f9f9fc",
+                "secondary-fixed-dim": "#35e500",
+                "surface-tint": "#8d4f07",
+                "tertiary-fixed": "#92fc40",
+                "outline-variant": "#d8c3b3",
+                "background": "#f9f9fc",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed-variant": "#6d3a00",
+                "inverse-on-surface": "#f0f0f3",
+                "surface-container": "#eeeef0",
+                "on-background": "#1a1c1e",
+                "tertiary-container": "#418400",
+                "surface-container-lowest": "#ffffff"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "sidebar-width": "260px",
+                "margin-mobile": "16px",
+                "card-padding": "20px",
+                "base": "8px",
+                "gutter": "24px",
+                "margin-desktop": "32px"
+        },
+        "fontFamily": {
+                "headline-lg": ["Hanken Grotesk"],
+                "headline-md": ["Hanken Grotesk"],
+                "label-sm": ["Hanken Grotesk"],
+                "numeric-data": ["Hanken Grotesk"],
+                "label-lg": ["Hanken Grotesk"],
+                "headline-sm": ["Hanken Grotesk"],
+                "body-md": ["Hanken Grotesk"],
+                "headline-lg-mobile": ["Hanken Grotesk"],
+                "body-lg": ["Hanken Grotesk"]
+        },
+        "fontSize": {
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500"}],
+                "numeric-data": ["28px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+        }
+      },
+    },
+  }
+</script>
+<style>
+        :root {
+            --color-orange: #C27933;
+            --color-green-soft: #89F336;
+            --color-green-bright: #3cff02;
+            --color-white: #FFFFFF;
+            --color-bg-light: #F5F7FA;
+            --color-text-dark: #2D3748;
+            --color-text-muted: #718096;
+            --color-sidebar-bg: #FFFFFF;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hanken Grotesk', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--color-bg-light);
+            color: var(--color-text-dark);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .sidebar {
+            width: 260px;
+            background-color: var(--color-sidebar-bg);
+            border-right: 1px solid #E2E8F0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px;
+            z-index: 10;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--color-bg-light);
+        }
+        .brand-logo {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+        }
+        .brand-name {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--color-text-dark);
+        }
+        .menu-group {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-grow: 1;
+        }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .menu-item:hover {
+            background-color: var(--color-bg-light);
+            color: var(--color-orange);
+        }
+        .menu-item.active {
+            background-color: #3cff0215;
+            color: var(--color-text-dark);
+            font-weight: 600;
+            border-left: 4px solid var(--color-green-bright);
+        }
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            color: #E53E3E;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+        .logout-btn:hover {
+            background-color: #FFF5F5;
+        }
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        header {
+            background-color: var(--color-white);
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        header h2 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            background-color: var(--color-green-soft);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow: hidden;
+        }
+        .content-body {
+            padding: 40px;
+        }
+        .report-section {
+            display: none;
+        }
+        .report-section.active-report {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        .card {
+            background-color: var(--color-white);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--color-green-soft);
+        }
+        .card-title {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .card-value {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        .chart-placeholder {
+            background-color: var(--color-white);
+            border: 2px dashed #CBD5E0;
+            border-radius: 12px;
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--color-text-muted);
+            font-style: italic;
+            margin-bottom: 24px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+<aside class="sidebar">
+<div>
+<div class="brand">
+<img alt="OccupaControl Logo" class="brand-logo" src="https://lh3.googleusercontent.com/aida/AP1WRLvEck_6h265t-gNtxbzeamcgtbSZ0D1ahG5KA-Dt3FOVgovd5cx0RvRr7_ZN8GnbcQj0skrAyzBQDBEUIzLlj9J0LuXXzboCRsFQjd4Tepn7Vp6vJFpzYrAPJuGLnuV2nvxza_tsrf3229fCN_JKdJJxSLsGf9zooDHSIVR1sskgs932KgTWkJSjrrNJTMI8fjT5PKt4mVX3QkMJkv2Gvw7xM24HXt2v5gde0lEbnaCWq0V4kvuwfJzHggp"/>
+<div class="brand-name flex items-center">OccupaControl</div>
+</div>
+<nav class="menu-group">
+<div class="menu-item active cursor-pointer" onclick="switchReport('diario', this)">
+<i class="fa-solid fa-calendar-day"></i>
+                    Relatório Diário
+                </div>
+<div class="menu-item cursor-pointer" onclick="switchReport('semanal', this)">
+<i class="fa-solid fa-calendar-week"></i>
+                    Relatório Semanal
+                </div>
+<div class="menu-item cursor-pointer" onclick="switchReport('mensal', this)">
+<i class="fa-solid fa-calendar-days"></i>
+                    Relatório Mensal
+                </div>
+</nav>
+</div>
+<div class="logout-btn cursor-pointer" onclick="window.location.href='login.html'">
+<i class="fa-solid fa-right-from-bracket"></i>
+            Sair do Sistema
+        </div>
+</aside>
+<main class="main-content">
+<header>
+<h2 class="" id="page-title">Dashboard &gt; Relatório Diário</h2>
+<div class="user-profile"><button class="flex items-center justify-center w-9 h-9 text-gray-500 hover:text-[#C27933] hover:bg-gray-100 rounded-full transition-colors duration-200 mr-2" onclick="window.location.href='config.html'" title="Configurações">
+<i class="fa-solid fa-gear text-lg"></i>
+</button>
+<span class="">Olá, Administrador</span>
+<div class="user-avatar"><img alt="Avatar do Usuário" class="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLujzhLRFvN8ni8IIyii54AH91yBXNYpOpt3NQ8xsryNWO7_vpNUaPpMqB1fm-QWpsrppZYNtM-0cGndHzNqIH20MEiOCuw2fT_i7794DQhdKw-IVCEJpcnFH-7sjPCE4YCsw1s70gbeH8wqkiwMQn44UAllFypVt9NJuFEMJWyc7FpmXpW1ykE9b1U2mPoaAe9JRRl8vZX3xUTJ3p-pZA3KVv_Baot3Zw4T0bv3kVAmSdqDStputx3gw7eI"/></div>
+</div>
+</header>
+<div class="content-body">
+<section class="report-section active-report" id="diario">
+<div class="cards-grid">
+<div class="card">
+<div class="card-title">Fluxo de Hoje</div>
+<div class="card-value">142 pessoas</div>
+</div>
+<div class="card" style="border-top-color: var(--color-orange);">
+<div class="card-title">Horário de Pico</div>
+<div class="card-value">15:30h</div>
+</div>
+<div class="card">
+<div class="card-title">Uso em Tempo Real</div>
+<div class="card-value">24 / 200</div>
+</div>
+</div>
+<div class="chart-placeholder">
+<i class="fa-solid fa-chart-line fa-2x" style="margin-bottom: 10px; color: var(--color-green-soft);"></i>
+<br/>[ Gráfico de Linha: Distribuição de entrada e saída por hora (00h às 23h) ]
+                </div>
+</section>
+<section class="report-section" id="semanal">
+<div class="cards-grid">
+<div class="card">
+<div class="card-title">Média Semanal</div>
+<div class="card-value">843 pessoas</div>
+</div>
+<div class="card" style="border-top-color: var(--color-orange);">
+<div class="card-title">Dia Mais Movimentado</div>
+<div class="card-value">Terça-feira</div>
+</div>
+<div class="card">
+<div class="card-title">Taxa Média de Ocupação</div>
+<div class="card-value">62%</div>
+</div>
+</div>
+<div class="chart-placeholder">
+<i class="fa-solid fa-chart-bar fa-2x" style="margin-bottom: 10px; color: var(--color-green-soft);"></i>
+<br/>[ Gráfico de Barras: Comparativo de fluxo entre Segunda a Sexta-feira ]
+                </div>
+</section>
+<section class="report-section" id="mensal">
+<div class="cards-grid">
+<div class="card">
+<div class="card-title">Total Acumulado</div>
+<div class="card-value">3.412 acessos</div>
+</div>
+<div class="card" style="border-top-color: var(--color-orange);">
+<div class="card-title">Semana de Pico</div>
+<div class="card-value">Semana 2</div>
+</div>
+<div class="card">
+<div class="card-title">Dias Úteis Ativos</div>
+<div class="card-value">22 dias</div>
+</div>
+</div>
+<div class="chart-placeholder">
+<i class="fa-solid fa-chart-area fa-2x" style="margin-bottom: 10px; color: var(--color-green-soft);"></i>
+<br/>[ Gráfico de Área ou Mapa de Calor: Densidade de acessos ao longo do mês ]
+                </div>
+</section>
+</div>
+</main>
+<script>
+        function switchReport(reportId, element) {
+            // Remove a classe ativa de todos os botões do menu
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Adiciona a classe ativa no botão clicado
+            element.classList.add('active');
+            
+            // Esconde todas as seções de relatórios
+            document.querySelectorAll('.report-section').forEach(section => {
+                section.classList.remove('active-report');
+            });
+            
+            // Mostra a seção desejada
+            document.getElementById(reportId).classList.add('active-report');
+            
+            // Atualiza o título do Header dinamicamente
+            const titles = {
+                'diario': 'Relatório Diário',
+                'semanal': 'Relatório Semanal',
+                'mensal': 'Relatório Mensal'
+            };
+            document.getElementById('page-title').innerText = `Dashboard > ${titles[reportId]}`;
+        }
+    </script>
+</body></html>

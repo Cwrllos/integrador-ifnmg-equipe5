@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR" style="">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Smart Campus - Sistema</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-dim": "#dadadc",
+                      "error": "#ba1a1a",
+                      "outline": "#857467",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed": "#92fc40",
+                      "surface-bright": "#f9f9fc",
+                      "inverse-surface": "#2f3133",
+                      "secondary": "#156e00",
+                      "outline-variant": "#d8c3b3",
+                      "secondary-fixed-dim": "#35e500",
+                      "on-secondary-fixed-variant": "#0d5300",
+                      "surface-container": "#eeeef0",
+                      "on-tertiary-fixed": "#0b2000",
+                      "on-secondary-fixed": "#032100",
+                      "on-secondary": "#ffffff",
+                      "surface": "#f9f9fc",
+                      "surface-container-highest": "#e2e2e5",
+                      "on-error": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "tertiary": "#326800",
+                      "secondary-fixed": "#79ff58",
+                      "secondary-container": "#3bfe00",
+                      "on-tertiary-fixed-variant": "#255100",
+                      "surface-variant": "#e2e2e5",
+                      "surface-container-high": "#e8e8ea",
+                      "inverse-primary": "#ffb77a",
+                      "on-primary-fixed-variant": "#6d3a00",
+                      "on-primary-fixed": "#2e1500",
+                      "background": "#f9f9fc",
+                      "on-tertiary": "#ffffff",
+                      "on-surface-variant": "#534438",
+                      "inverse-on-surface": "#f0f0f3",
+                      "tertiary-fixed-dim": "#77df1e",
+                      "primary-container": "#a8641f",
+                      "on-secondary-container": "#167100",
+                      "primary-fixed": "#ffdcc2",
+                      "on-primary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-tint": "#8d4f07",
+                      "primary": "#8a4c04",
+                      "on-primary-container": "#fffbff",
+                      "tertiary-container": "#418400",
+                      "surface-container-low": "#f3f3f6",
+                      "primary-fixed-dim": "#ffb77a",
+                      "on-surface": "#1a1c1e",
+                      "on-background": "#1a1c1e",
+                      "on-tertiary-container": "#f9ffec"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "sidebar-width": "260px",
+                      "gutter": "24px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "32px",
+                      "card-padding": "20px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Hanken Grotesk"],
+                      "label-sm": ["Hanken Grotesk"],
+                      "headline-sm": ["Hanken Grotesk"],
+                      "body-lg": ["Hanken Grotesk"],
+                      "headline-md": ["Hanken Grotesk"],
+                      "label-lg": ["Hanken Grotesk"],
+                      "body-md": ["Hanken Grotesk"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+    <style>
+        /* Custom Toggle Switch Styles */
+        .toggle-checkbox:checked { right: 0; border-color: theme('colors.primary'); }
+        .toggle-checkbox:checked + .toggle-label { background-color: theme('colors.primary'); }
+        .toggle-checkbox { right: 0; z-index: 1; border-color: theme('colors.outline-variant'); transition: all 0.2s ease-in-out; }
+        .toggle-label { width: 3rem; height: 1.5rem; background-color: theme('colors.surface-container-highest'); border-radius: 9999px; transition: all 0.2s ease-in-out; border: 1px solid theme('colors.outline-variant'); }
+        .toggle-dot { top: 2px; left: 2px; width: 1.25rem; height: 1.25rem; background-color: white; border-radius: 50%; transition: all 0.2s ease-in-out; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        .toggle-checkbox:checked ~ .toggle-dot { transform: translateX(100%); }
+        
+        /* Transição suave para as abas */
+        .conteudo-aba {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen">
+
+    <!-- SideNavBar -->
+    <nav class="hidden md:flex fixed left-0 top-0 h-full w-sidebar-width bg-surface-container-lowest border-r border-outline-variant flex-col py-base z-20">
+        <!-- Header -->
+        <div class="px-gutter py-4 mb-4">
+            <div class="flex items-center gap-3">
+                <div class="h-8 flex items-center justify-center">
+                    <img alt="Logo OccupaControl" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLvEck_6h265t-gNtxbzeamcgtbSZ0D1ahG5KA-Dt3FOVgovd5cx0RvRr7_ZN8GnbcQj0skrAyzBQDBEUIzLlj9J0LuXXzboCRsFQjd4Tepn7Vp6vJFpzYrAPJuGLnuV2nvxza_tsrf3229fCN_JKdJJxSLsGf9zooDHSIVR1sskgs932KgTWkJSjrrNJTMI8fjT5PKt4mVX3QkMJkv2Gvw7xM24HXt2v5gde0lEbnaCWq0V4kvuwfJzHggp"/>
+                </div>
+                <h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">OccupaControl</h1>
+            </div>
+            <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Sistema de Gestão de Ocupação</p>
+        </div>
+
+        <!-- Main Navigation Tabs -->
+        <div class="flex flex-col gap-1 px-4 flex-grow" id="menu-principal">
+
+            <a href="#" onclick="mudarAba('status', this); return false;" class="menu-item flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg group">
+                <span class="material-symbols-outlined group-hover:text-primary transition-colors" style="font-variation-settings: 'FILL' 0;">settings_input_component</span>
+                <span class="font-label-lg text-label-lg">Status do Sistema</span>
+            </a>
+
+            <a href="#" onclick="mudarAba('analise', this); return false;" class="menu-item flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg group">
+                <span class="material-symbols-outlined group-hover:text-primary transition-colors" style="font-variation-settings: 'FILL' 0;">analytics</span>
+                <span class="font-label-lg text-label-lg">Análise</span>
+            </a>
+
+            <!-- Configurações começa ATIVO -->
+            <a href="#" onclick="mudarAba('configuracoes', this); return false;" class="menu-item flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg transition-all duration-200 active:scale-95 shadow-sm">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+                <span class="font-label-lg text-label-lg font-bold">Configurações</span>
+            </a>
+
+        </div>
+
+        <!-- Footer actions -->
+        <div class="mt-auto px-4 pt-4 border-t border-outline-variant flex flex-col gap-1">
+            <div class="px-4 py-2 mb-2 flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></div>
+                <span class="font-label-sm text-label-sm text-on-surface-variant">Status do Sistema: Ativo</span>
+            </div>
+            <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">help</span>
+                <span class="font-label-lg text-label-lg">Suporte</span>
+            </a>
+            
+            <!-- Botão Sair -->
+            <a href="#" onclick="fazerLogout(); return false;" class="flex items-center gap-3 px-4 py-3 text-error hover:bg-error-container hover:text-on-error-container transition-colors rounded-lg mt-2 mb-4">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">logout</span>
+                <span class="font-label-lg text-label-lg font-bold">Sair do Sistema</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- TopNavBar -->
+    <header class="hidden md:flex fixed top-0 right-0 w-[calc(100%-260px)] h-16 bg-surface border-b border-outline-variant justify-between items-center px-margin-desktop z-10 transition-all duration-200">
+        <!-- Header Conteúdo -->
+        <div class="flex items-center gap-6">
+            <h2 id="titulo-header" class="font-headline-sm text-headline-sm font-semibold text-on-surface">Configurações</h2>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-full transition-colors relative">
+                <span class="material-symbols-outlined">notifications</span>
+                <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-surface"></span>
+            </button>
+            <div class="h-8 w-px bg-outline-variant mx-2"></div>
+            <div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+                <img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwR5PKgauH0dBDbruEreLrasSn-XW_TqlvDCR3Ra1PTfrsN3jxFwYtoFoEIH8fcSB-CvrTx_cE6x90UMsBAmSbbPb-L1p_lL-eDgtZHb-i1OrpSJgFqFiOR8VZYOqGlhw3aY1AFmvpLStXq5AnjlrLdEbTLYykY5S_BmpmobOOfddifuc78YPFxGo1g3LDxZe5-X81LAJAHUUUAFnn02Qrfkv2Z68YA8_g89JpcusTQpkTV4pEAVDxg56TotH3v3E9kVSoh8Yaf_sE"/>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Canvas -->
+    <main class="md:ml-[260px] pt-24 pb-12 px-margin-desktop">
+        
+        <!-- Aba Configurações -->
+        <div id="aba-configuracoes" class="conteudo-aba max-w-6xl mx-auto block">
+            <div class="mb-8 flex justify-between items-end">
+                <div>
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface">Configuração</h2>
+                </div>
+                <!-- Botão Salvar Alterações com Função e IDs -->
+                <button onclick="salvarConfiguracoes(this)" class="bg-primary hover:bg-surface-tint text-on-primary px-4 py-2 rounded-lg font-label-lg text-label-lg transition-colors flex items-center gap-2 shadow-sm min-w-[180px] justify-center">
+                    <span class="material-symbols-outlined text-[18px]">save</span> 
+                    <span class="texto-botao">Salvar Alterações</span>
+                </button>
+            </div>
+
+            <!-- Grid Layout Original -->
+            <div class="grid grid-cols-12 gap-gutter">
+                <!-- Profile Card -->
+                <div class="col-span-12 lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-card-padding shadow-sm">
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface mb-6 border-b border-outline-variant pb-4">Perfil do Administrador</h3>
+                    <div class="flex flex-col md:flex-row gap-8 items-start">
+                        <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                            <div class="flex flex-col gap-1.5">
+                                <label class="font-label-sm text-label-sm text-on-surface-variant">Nome Completo</label>
+                                <input class="w-full bg-surface border border-outline-variant rounded-lg px-3 py-2 text-on-surface" type="text" value="Administrador"/>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label class="font-label-sm text-label-sm text-on-surface-variant">E-mail</label>
+                                <input class="w-full bg-surface border border-outline-variant rounded-lg px-3 py-2 text-on-surface" type="email" value="admin@smartcampus.edu"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theme Selection Card -->
+                <div class="col-span-12 lg:col-span-4 bg-surface-container-lowest border border-outline-variant rounded-xl p-card-padding shadow-sm">
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface mb-6 border-b border-outline-variant pb-4">Tema do App</h3>
+                    <div class="flex flex-col gap-4 flex-1 justify-center">
+                        <button class="w-full flex items-center justify-between p-4 rounded-xl border-2 border-primary bg-primary/5 transition-all">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary">light_mode</span>
+                                <span class="font-label-lg text-label-lg text-on-surface font-bold">Modo Claro</span>
+                            </div>
+                        </button>
+                        <button class="w-full flex items-center justify-between p-4 rounded-xl border border-outline-variant bg-surface hover:bg-surface-container-low transition-all text-on-surface-variant">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined">dark_mode</span>
+                                <span class="font-label-lg text-label-lg">Modo Escuro</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Abas Novas -->
+
+        <!-- Aba Status do Sistema -->
+        <div id="aba-status" class="conteudo-aba hidden max-w-6xl mx-auto">
+            <div class="mb-8"><h2 class="font-headline-lg text-headline-lg text-on-surface">Status do Sistema</h2></div>
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-card-padding shadow-sm h-64 flex items-center justify-center">
+                <p class="text-on-surface-variant font-label-lg">Gráficos de servidor e rede em construção...</p>
+            </div>
+        </div>
+
+        <!-- Aba Análise -->
+        <div id="aba-analise" class="conteudo-aba hidden max-w-6xl mx-auto">
+            <div class="mb-8"><h2 class="font-headline-lg text-headline-lg text-on-surface">Análise de Dados</h2></div>
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-card-padding shadow-sm h-64 flex items-center justify-center">
+                <p class="text-on-surface-variant font-label-lg">Relatórios e métricas em construção...</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Scripts JavaScript -->
+    <script>
+        // Função para alternar as abas
+        function mudarAba(idAba, elementoClicado) {
+            const abas = document.querySelectorAll('.conteudo-aba');
+            abas.forEach(aba => {
+                aba.classList.add('hidden');
+                aba.classList.remove('block');
+            });
+
+            document.getElementById('aba-' + idAba).classList.remove('hidden');
+            document.getElementById('aba-' + idAba).classList.add('block');
+
+            const classesInativas = ['text-on-surface-variant', 'hover:bg-surface-container-high', 'transition-colors', 'rounded-lg', 'group'];
+            const classesAtivas = ['bg-secondary-container', 'text-on-secondary-container', 'transition-all', 'duration-200', 'active:scale-95', 'shadow-sm', 'rounded-lg'];
+
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove(...classesAtivas);
+                item.classList.add(...classesInativas);
+                
+                const icone = item.querySelector('.material-symbols-outlined');
+                if(icone) icone.style.fontVariationSettings = "'FILL' 0";
+                
+                const texto = item.querySelector('span:not(.material-symbols-outlined)');
+                if(texto) texto.classList.remove('font-bold');
+            });
+
+            if (elementoClicado) {
+                elementoClicado.classList.remove(...classesInativas);
+                elementoClicado.classList.add(...classesAtivas);
+                
+                const iconeAtivo = elementoClicado.querySelector('.material-symbols-outlined');
+                if(iconeAtivo) iconeAtivo.style.fontVariationSettings = "'FILL' 1";
+                
+                const textoAtivo = elementoClicado.querySelector('span:not(.material-symbols-outlined)');
+                if(textoAtivo) {
+                    textoAtivo.classList.add('font-bold');
+                    document.getElementById('titulo-header').innerText = textoAtivo.innerText;
+                }
+            }
+        }
+
+        // Função do Botão Sair
+        function fazerLogout() {
+            if(confirm("Tem certeza que deseja sair do sistema?")) {
+                alert("Logout realizado com sucesso! (Simulação)");
+            }
+        }
+
+        // Função do Botão Salvar com animação de UX
+        function salvarConfiguracoes(botao) {
+            const icone = botao.querySelector('.material-symbols-outlined');
+            const texto = botao.querySelector('.texto-botao');
+            const classesOriginais = botao.className; 
+
+            // 1. Estado de "Carregando"
+            icone.innerText = 'sync';
+            icone.classList.add('animate-spin'); 
+            texto.innerText = 'Salvando...';
+            botao.classList.add('opacity-80', 'cursor-not-allowed');
+
+            // 2. Simula o tempo de salvamento
+            setTimeout(() => {
+                // Estado de "Sucesso"
+                icone.classList.remove('animate-spin');
+                icone.innerText = 'check';
+                texto.innerText = 'Salvo com sucesso!';
+                
+                botao.classList.remove('bg-primary', 'hover:bg-surface-tint', 'opacity-80', 'cursor-not-allowed');
+                botao.classList.add('bg-secondary'); 
+                
+                // 3. Volta ao estado original
+                setTimeout(() => {
+                    botao.className = classesOriginais; 
+                    icone.innerText = 'save';
+                    texto.innerText = 'Salvar Alterações';
+                }, 2000);
+
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
