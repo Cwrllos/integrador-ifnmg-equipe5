@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>OccupaControl - Erro de Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f9f9fc",
+                        "on-primary-fixed": "#2e1500",
+                        "secondary": "#156e00",
+                        "on-secondary-fixed-variant": "#0d5300",
+                        "outline": "#857467",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#534438",
+                        "on-surface": "#1a1c1e",
+                        "on-background": "#1a1c1e",
+                        "secondary-container": "#3bfe00",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#35e500",
+                        "primary-container": "#a8641f",
+                        "on-tertiary-fixed-variant": "#255100",
+                        "surface-container-low": "#f3f3f6",
+                        "inverse-primary": "#ffb77a",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#032100",
+                        "inverse-on-surface": "#f0f0f3",
+                        "surface-container-high": "#e8e8ea",
+                        "tertiary": "#326800",
+                        "primary-fixed-dim": "#ffb77a",
+                        "surface-dim": "#dadadc",
+                        "tertiary-fixed": "#92fc40",
+                        "outline-variant": "#d8c3b3",
+                        "on-tertiary-container": "#f9ffec",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#fffbff",
+                        "primary-fixed": "#ffdcc2",
+                        "surface-bright": "#f9f9fc",
+                        "on-secondary-container": "#167100",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e2e2e5",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#6d3a00",
+                        "on-tertiary-fixed": "#0b2000",
+                        "error": "#ba1a1a",
+                        "surface-container": "#eeeef0",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#418400",
+                        "secondary-fixed": "#79ff58",
+                        "primary": "#8a4c04",
+                        "surface": "#f9f9fc",
+                        "surface-variant": "#e2e2e5",
+                        "tertiary-fixed-dim": "#77df1e",
+                        "surface-tint": "#8d4f07",
+                        "inverse-surface": "#2f3133"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "card-padding": "20px",
+                        "margin-desktop": "32px",
+                        "base": "8px",
+                        "sidebar-width": "260px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Hanken Grotesk"],
+                        "label-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "numeric-data": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "numeric-data": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+    </style>
+</head>
+<body class="bg-background min-h-screen flex items-center justify-center p-margin-desktop">
+<main class="w-full max-w-md bg-surface-container-lowest border border-surface-variant rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.1)] overflow-hidden">
+<div class="p-card-padding flex flex-col items-center border-b border-surface-variant">
+<div class="mb-4 flex items-center justify-center overflow-hidden">
+<img alt="OccupaControl Logo" class="w-12 h-12 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLvEck_6h265t-gNtxbzeamcgtbSZ0D1ahG5KA-Dt3FOVgovd5cx0RvRr7_ZN8GnbcQj0skrAyzBQDBEUIzLlj9J0LuXXzboCRsFQjd4Tepn7Vp6vJFpzYrAPJuGLnuV2nvxza_tsrf3229fCN_JKdJJxSLsGf9zooDHSIVR1sskgs932KgTWkJSjrrNJTMI8fjT5PKt4mVX3QkMJkv2Gvw7xM24HXt2v5gde0lEbnaCWq0V4kvuwfJzHggp"/>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface">OccupaControl</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Acesso ao Painel de Controle</p>
+</div>
+<div class="p-card-padding">
+<div class="bg-error-container border border-error rounded-lg p-3 mb-6 flex items-center gap-3" role="alert">
+<span class="material-symbols-outlined text-error" data-icon="error" data-weight="fill" style="font-variation-settings: 'FILL' 1;">error</span>
+<p class="font-body-md text-body-md text-on-error-container font-medium">Usuário ou senha incorretos</p>
+</div>
+<form action="#" class="space-y-4" method="POST">
+<div class="space-y-1">
+<label class="font-label-lg text-label-lg text-on-surface block" for="username">Usuário</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="person">person</span>
+<input class="w-full pl-10 pr-3 py-2 bg-surface border border-outline rounded-DEFAULT font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors" id="username" name="username" placeholder="Seu e-mail corporativo" required="" type="email" value="admin@occupacontrol.com"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="font-label-lg text-label-lg text-on-surface block" for="password">Senha</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="lock">lock</span>
+<input class="w-full pl-10 pr-3 py-2 bg-surface border border-error rounded-DEFAULT font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-error focus:border-error transition-colors" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 pb-4">
+<div class="flex items-center gap-2">
+<input class="w-4 h-4 text-primary bg-surface border-outline rounded focus:ring-primary focus:ring-2" id="remember" type="checkbox"/>
+<label class="font-label-sm text-label-sm text-on-surface-variant" for="remember">Lembrar-me</label>
+</div>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="esqueci_senha.html">Esqueci a senha</a>
+</div>
+<button class="w-full bg-[#C27933] hover:bg-primary text-on-primary font-label-lg text-label-lg py-3 rounded-lg transition-colors flex justify-center items-center" type="submit">
+            Entrar
+        </button>
+</form>
+</div>
+<div class="bg-surface-container-low p-4 text-center border-t border-surface-variant">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Precisa de ajuda? <a class="text-primary hover:underline" href="mailto:suporte@occupacontrol.com">Contate o Suporte TI</a></p>
+</div>
+</main>
+</body></html>

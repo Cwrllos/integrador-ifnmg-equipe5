@@ -1,0 +1,169 @@
+<!DOCTYPE html><html class="light" lang="pt-BR"><head></head><body class="bg-background text-on-background min-h-screen flex items-center justify-center p-gutter">```html
+
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>OccupaControl - Erro de Registro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f9f9fc",
+                        "on-primary-fixed": "#2e1500",
+                        "secondary": "#156e00",
+                        "on-secondary-fixed-variant": "#0d5300",
+                        "outline": "#857467",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#534438",
+                        "on-surface": "#1a1c1e",
+                        "on-background": "#1a1c1e",
+                        "secondary-container": "#3bfe00",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#35e500",
+                        "primary-container": "#a8641f",
+                        "on-tertiary-fixed-variant": "#255100",
+                        "surface-container-low": "#f3f3f6",
+                        "inverse-primary": "#ffb77a",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#032100",
+                        "inverse-on-surface": "#f0f0f3",
+                        "surface-container-high": "#e8e8ea",
+                        "tertiary": "#326800",
+                        "primary-fixed-dim": "#ffb77a",
+                        "surface-dim": "#dadadc",
+                        "tertiary-fixed": "#92fc40",
+                        "outline-variant": "#d8c3b3",
+                        "on-tertiary-container": "#f9ffec",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#fffbff",
+                        "primary-fixed": "#ffdcc2",
+                        "surface-bright": "#f9f9fc",
+                        "on-secondary-container": "#167100",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e2e2e5",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#6d3a00",
+                        "on-tertiary-fixed": "#0b2000",
+                        "error": "#ba1a1a",
+                        "surface-container": "#eeeef0",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#418400",
+                        "secondary-fixed": "#79ff58",
+                        "primary": "#8a4c04",
+                        "surface": "#f9f9fc",
+                        "surface-variant": "#e2e2e5",
+                        "tertiary-fixed-dim": "#77df1e",
+                        "surface-tint": "#8d4f07",
+                        "inverse-surface": "#2f3133"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "card-padding": "20px",
+                        "margin-desktop": "32px",
+                        "base": "8px",
+                        "sidebar-width": "260px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Hanken Grotesk"],
+                        "label-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "numeric-data": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "numeric-data": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+<!-- Main Card Container -->
+<main class="w-full max-w-[480px] bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.1)] p-margin-desktop">
+<!-- Header -->
+<header class="text-center mb-8">
+<div class="inline-flex items-center justify-center w-16 h-16 bg-primary-container text-on-primary-container rounded-full mb-4">
+<img alt="Logo OccupaControl" class="w-12 h-12 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLvEck_6h265t-gNtxbzeamcgtbSZ0D1ahG5KA-Dt3FOVgovd5cx0RvRr7_ZN8GnbcQj0skrAyzBQDBEUIzLlj9J0LuXXzboCRsFQjd4Tepn7Vp6vJFpzYrAPJuGLnuV2nvxza_tsrf3229fCN_JKdJJxSLsGf9zooDHSIVR1sskgs932KgTWkJSjrrNJTMI8fjT5PKt4mVX3QkMJkv2Gvw7xM24HXt2v5gde0lEbnaCWq0V4kvuwfJzHggp">
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">OccupaControl</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Crie sua conta administrativa</p>
+</header>
+<!-- Error Banner -->
+<div class="mb-6 p-4 bg-error-container border border-error rounded-lg flex items-start gap-3">
+<span class="material-symbols-outlined text-error mt-0.5" data-icon="error" data-weight="fill" style="font-variation-settings: 'FILL' 1;">error</span>
+<div>
+<h2 class="font-label-lg text-label-lg text-error mb-1">Alguns dados estão incorretos</h2>
+<p class="font-body-md text-body-md text-on-error-container">Por favor, revise os campos destacados em vermelho abaixo antes de prosseguir.</p>
+</div>
+</div>
+<!-- Registration Form -->
+<form class="space-y-6">
+<!-- Name Field (Valid) -->
+<div>
+<label class="block font-label-lg text-label-lg text-on-surface mb-2" for="name">Nome Completo</label>
+<input class="w-full px-4 py-3 bg-surface border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" id="name" name="name" type="text" value="Carlos Silva Admin">
+</div>
+<!-- CPF Field (Error) -->
+<div>
+<label class="block font-label-lg text-label-lg text-error mb-2" for="cpf">CPF</label>
+<div class="relative">
+<input class="w-full px-4 py-3 bg-surface border-2 border-error rounded-lg font-body-md text-body-md text-on-surface focus:outline-none pr-10" id="cpf" name="cpf" type="text" value="123.456.789">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-error" data-icon="error_circle">error</span>
+</div>
+<p class="mt-2 font-label-sm text-label-sm text-error">O CPF informado é inválido. Formato esperado: 000.000.000-00.</p>
+</div>
+<!-- Email Field (Error) -->
+<div>
+<label class="block font-label-lg text-label-lg text-error mb-2" for="email">E-mail Corporativo</label>
+<div class="relative">
+<input class="w-full px-4 py-3 bg-surface border-2 border-error rounded-lg font-body-md text-body-md text-on-surface focus:outline-none pr-10" id="email" name="email" type="email" value="carlos.silva@occupa">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-error" data-icon="error_circle">error</span>
+</div>
+<p class="mt-2 font-label-sm text-label-sm text-error">Insira um endereço de e-mail válido com domínio completo.</p>
+</div>
+<!-- Password Field (Valid) -->
+<div>
+<label class="block font-label-lg text-label-lg text-on-surface mb-2" for="password">Senha</label>
+<input class="w-full px-4 py-3 bg-surface border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" id="password" name="password" type="password" value="********">
+</div>
+<!-- Action Button -->
+<button class="w-full py-4 px-6 bg-primary hover:bg-surface-tint text-on-primary font-label-lg text-label-lg rounded-lg transition-colors duration-200 mt-8" onclick="window.location.href='dashboard.html'">Criar Conta</button> type="button">
+                Criar Conta
+            </button>
+<!-- Footer Links -->
+<div class="text-center mt-6">
+<p class="font-body-md text-body-md text-on-surface-variant">Já possui acesso? <a class="text-primary font-semibold hover:underline" href="login.html">Fazer Login</a></p>
+</div>
+</form>
+</main>
+
+
+```
+
+</body></html>
