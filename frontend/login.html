@@ -1,4 +1,4 @@
-<html lang="pt-BR" style=""><head></head><body class="bg-background text-on-background min-h-screen flex items-center justify-center">
+<html lang="pt-BR" style=""><head></head><script type="module" src="js/controllers/login.controller.js"></script><body class="min-h-screen bg-gray-50 font-sans">
 
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -105,20 +105,61 @@
         body { font-family: 'Hanken Grotesk', sans-serif; }
     </style>
 <!-- Main Container: Split Screen Layout -->
-<div class="flex w-full min-h-screen">
+<div id="loginPage" class="flex w-full min-h-screen">
+
+  <!-- Painel esquerdo do Login -->
+  <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-green-900 via-green-800 to-green-600 text-white flex-col justify-between p-12">
+
+  <div class="flex items-center gap-3">
+    <span class="material-symbols-outlined text-4xl">
+      monitoring
+    </span>
+    <h1 class="text-2xl font-bold">OccupaControl</h1>
+  </div>
+
+  <div>
+    <h2 class="text-4xl font-bold leading-tight mb-6">
+      Gestão inteligente de ambientes
+    </h2>
+
+    <p class="text-lg text-green-100 leading-relaxed">
+      Monitore a ocupação dos ambientes em tempo real,
+      acompanhe entradas e saídas e tome decisões
+      com mais segurança e eficiência.
+    </p>
+  </div>
+
+  <div class="text-sm text-green-100">
+    IFNMG • Sistema de Monitoramento Inteligente
+  </div>
+
+</div>
 <!-- Right Side: Login Card Area -->
-<div class="w-full flex items-center justify-center p-margin-mobile bg-background">
+<div class="w-full lg:w-1/2 flex items-center justify-center p-margin-mobile bg-background">
 <div class="w-full max-w-[440px] bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant p-6 lg:p-10">
 <!-- Header / Logo -->
-<div class="mb-10 text-center lg:text-left">
-<div class="flex items-center justify-center lg:justify-start mb-6">
-<img alt="Logo do OccupaControl" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLvEck_6h265t-gNtxbzeamcgtbSZ0D1ahG5KA-Dt3FOVgovd5cx0RvRr7_ZN8GnbcQj0skrAyzBQDBEUIzLlj9J0LuXXzboCRsFQjd4Tepn7Vp6vJFpzYrAPJuGLnuV2nvxza_tsrf3229fCN_JKdJJxSLsGf9zooDHSIVR1sskgs932KgTWkJSjrrNJTMI8fjT5PKt4mVX3QkMJkv2Gvw7xM24HXt2v5gde0lEbnaCWq0V4kvuwfJzHggp"/>
-</div>
-<h2 class="font-headline-md text-headline-md text-on-background">OccupaControl</h2>
-<p class="font-body-md text-body-md text-on-surface-variant mt-2">Faça o login para acessar os controles administrativos.</p>
+<div class="mb-8 text-center">
+
+  <div class="flex justify-center mb-4">
+    <img
+      src="assets/images/Logo.png"
+      alt="Logotipo do OccupaControl"
+      class="h-20 w-auto max-w-full object-contain"
+    />
+  </div>
+
+  <h2 class="text-2xl font-bold text-gray-900 mb-2">
+    Bem-vindo ao OccupaControl
+  </h2>
+
+  <p class="text-sm text-gray-500 leading-relaxed">
+    Entre com suas credenciais para acessar
+    os controles administrativos.
+  </p>
+
 </div>
 <!-- Login Form -->
-<form class="flex flex-col gap-6" onsubmit="event.preventDefault();">
+<form id="loginForm" class="flex flex-col gap-6">
 <!-- Email Field -->
 <div class="flex flex-col gap-2">
 <label class="font-label-lg text-label-lg text-on-surface" for="email">E-mail do Administrador</label>
@@ -146,9 +187,19 @@
                         </label>
 </div>
 <!-- Primary Action Button (Brand Green) -->
-<button class="mt-4 w-full bg-secondary text-on-secondary py-3.5 px-6 rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-2 hover:bg-secondary/90 hover:shadow-md transition-all active:scale-[0.98] cursor-pointer" onclick="window.location.href='dashboard.html'">Login Seguro</button>
-<span class=""></span>
-</button>
+<button 
+    id="loginButton" type="submit" 
+    class="mt-4 w-full bg-secondary text-on-secondary py-3.5 px-6 rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-2 hover:bg-secondary/90 hover:shadow-md transition-all active:scale-[0.98] cursor-pointer" 
+    >
+    Login Seguro
+    </button>
+
+    <p
+        id="loginError"
+        role="alert"
+        aria-live="polite"
+        class="hidden text-sm text-red-600 text-center"
+    ></p>
 <div class="text-center mt-4"><p class="font-body-md text-body-md text-on-surface-variant">Não tem uma conta? <a class="text-primary font-semibold hover:underline cursor-pointer" href="registro.html">Cadastre-se</a></p></div></form>
 <!-- System Status Indicator -->
 <div class="mt-8 flex items-center justify-center gap-2 text-on-surface-variant bg-surface-container-low py-2 px-4 rounded-full w-max mx-auto">

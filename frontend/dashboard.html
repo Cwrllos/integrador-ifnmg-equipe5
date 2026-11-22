@@ -3,8 +3,12 @@
 <html lang="pt-BR" style=""><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
 <title>Smart Campus - Controle de Fluxo</title>
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
   tailwind.config = {
@@ -141,11 +145,13 @@
             padding-bottom: 20px;
             border-bottom: 2px solid var(--color-bg-light);
         }
-        .brand-logo {
-            height: 32px;
-            width: auto;
-            object-fit: contain;
-        }
+      .brand-logo {
+    height: 44px;
+    width: auto;
+    max-width: 52px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
         .brand-name {
             font-weight: 700;
             font-size: 18px;
@@ -241,30 +247,97 @@
             display: block;
             animation: fadeIn 0.4s ease;
         }
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 24px;
-            margin-bottom: 32px;
-        }
-        .card {
-            background-color: var(--color-white);
-            padding: 24px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            border-top: 4px solid var(--color-green-soft);
-        }
-        .card-title {
-            font-size: 14px;
-            color: var(--color-text-muted);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .card-value {
-            font-size: 28px;
-            font-weight: 700;
-        }
+        
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.card {
+    background-color: var(--color-white);
+    padding: 28px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 4px solid var(--color-green-soft);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-title i {
+    font-size: 18px;
+    color: var(--color-green-soft);
+}
+
+.card-value {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.card-description {
+    margin-top: 12px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+}
+
+.ocupacao-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-size: 12px;
+    color: var(--color-text-muted);
+}
+
+.ocupacao-info strong {
+    font-size: 13px;
+    color: var(--color-text-dark);
+}
+
+.ocupacao-barra {
+    width: 100%;
+    height: 10px;
+    background-color: #E2E8F0;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+#ocupacao-progresso {
+    width: 0%;
+    height: 100%;
+    background-color: #22C55E;
+    border-radius: 999px;
+    transition: width 0.5s ease, background-color 0.3s ease;
+}
+
+.ocupacao-disponivel {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--color-text-muted);
+}
+
+
         .chart-placeholder {
             background-color: var(--color-white);
             border: 2px dashed #CBD5E0;
@@ -279,34 +352,70 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+.grafico-card {
+    background-color: var(--color-white);
+    padding: 28px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    margin-bottom: 24px;
+}
+
+.grafico-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    margin-bottom: 6px;
+}
+
+.grafico-header p {
+    font-size: 13px;
+    color: var(--color-text-muted);
+}
+
+.grafico-container {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    margin-top: 24px;
+}
+
     </style>
 </head>
 <body>
 <aside class="sidebar">
 <div>
 <div class="brand">
-<img alt="OccupaControl Logo" class="brand-logo" src="https://lh3.googleusercontent.com/aida/AP1WRLvEck_6h265t-gNtxbzeamcgtbSZ0D1ahG5KA-Dt3FOVgovd5cx0RvRr7_ZN8GnbcQj0skrAyzBQDBEUIzLlj9J0LuXXzboCRsFQjd4Tepn7Vp6vJFpzYrAPJuGLnuV2nvxza_tsrf3229fCN_JKdJJxSLsGf9zooDHSIVR1sskgs932KgTWkJSjrrNJTMI8fjT5PKt4mVX3QkMJkv2Gvw7xM24HXt2v5gde0lEbnaCWq0V4kvuwfJzHggp"/>
-<div class="brand-name flex items-center">OccupaControl</div>
+<img
+  alt="Logotipo do OccupaControl"
+  class="brand-logo"
+  src="assets/images/Logo.png"
+/><div class="brand-name flex items-center">OccupaControl</div>
 </div>
 <nav class="menu-group">
-<div class="menu-item active cursor-pointer" onclick="switchReport('diario', this)">
+<div class="menu-item active cursor-pointer" data-report="diario">
 <i class="fa-solid fa-calendar-day"></i>
                     Relatório Diário
                 </div>
-<div class="menu-item cursor-pointer" onclick="switchReport('semanal', this)">
+<div class="menu-item cursor-pointer" data-report="semanal">
 <i class="fa-solid fa-calendar-week"></i>
                     Relatório Semanal
                 </div>
-<div class="menu-item cursor-pointer" onclick="switchReport('mensal', this)">
+<div class="menu-item cursor-pointer" data-report="mensal">
 <i class="fa-solid fa-calendar-days"></i>
                     Relatório Mensal
                 </div>
 </nav>
 </div>
-<div class="logout-btn cursor-pointer" onclick="window.location.href='login.html'">
-<i class="fa-solid fa-right-from-bracket"></i>
-            Sair do Sistema
-        </div>
+<button
+  id="logoutButton"
+  type="button"
+  class="logout-btn cursor-pointer"
+>
+  <i class="fa-solid fa-right-from-bracket"></i>
+  Sair do Sistema
+</button>
 </aside>
 <main class="main-content">
 <header>
@@ -319,39 +428,102 @@
 </div>
 </header>
 <div class="content-body">
+<p id="dashboard-status" aria-live="polite" style="margin-bottom: 16px; color: var(--color-text-muted)">Conectando à API...</p>
 <section class="report-section active-report" id="diario">
 <div class="cards-grid">
+
 <div class="card">
-<div class="card-title">Fluxo de Hoje</div>
-<div class="card-value">142 pessoas</div>
+  <div class="card-title">
+    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+    Movimentações Hoje
+  </div>
+
+  <div class="card-value" id="fluxo-hoje">
+    Carregando...
+  </div>
+
+  <div class="card-description">
+    Total de entradas e saídas registradas
+  </div>
 </div>
+
 <div class="card" style="border-top-color: var(--color-orange);">
-<div class="card-title">Horário de Pico</div>
-<div class="card-value">15:30h</div>
+  <div class="card-title">
+    <i class="fa-solid fa-clock"></i>
+    Horário de Pico
+  </div>
+
+  <div class="card-value" id="horario-pico">
+    —
+  </div>
+
+  <div class="card-description">
+    Horário com maior movimentação
+  </div>
 </div>
+
 <div class="card">
-<div class="card-title">Uso em Tempo Real</div>
-<div class="card-value">24 / 200</div>
+  <div class="card-title">
+    <i class="fa-solid fa-users"></i>
+    Uso em Tempo Real
+  </div>
+
+  <div class="card-value" id="ocupacao-atual">
+    Carregando...
+  </div>
+
+  <div class="card-description">
+    Pessoas presentes / capacidade máxima
+    </div>
+
+
+<div class="ocupacao-info">
+  <span>Capacidade utilizada</span>
+  <strong id="ocupacao-percentual">0%</strong>
 </div>
+
+<div
+  class="ocupacao-barra"
+  role="progressbar"
+  aria-label="Ocupação do ambiente"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-valuenow="0"
+>
+  <div id="ocupacao-progresso"></div>
 </div>
-<div class="chart-placeholder">
-<i class="fa-solid fa-chart-line fa-2x" style="margin-bottom: 10px; color: var(--color-green-soft);"></i>
-<br/>[ Gráfico de Linha: Distribuição de entrada e saída por hora (00h às 23h) ]
-                </div>
+
+<p id="ocupacao-disponivel" class="ocupacao-disponivel">
+  Calculando vagas disponíveis...
+</p>
+
+  </div>
+
+</div>
+<div class="grafico-card">
+  <div class="grafico-header">
+    <h3>Movimentação por Horário</h3>
+    <p>Entradas e saídas registradas hoje</p>
+  </div>
+
+  <div class="grafico-container">
+    <canvas id="graficoMovimentacao"></canvas>
+  </div>
+</div>
 </section>
 <section class="report-section" id="semanal">
 <div class="cards-grid">
 <div class="card">
 <div class="card-title">Média Semanal</div>
-<div class="card-value">843 pessoas</div>
+<div class="card-value">—</div>
 </div>
 <div class="card" style="border-top-color: var(--color-orange);">
 <div class="card-title">Dia Mais Movimentado</div>
-<div class="card-value">Terça-feira</div>
+<div class="card-value">—</div>
 </div>
 <div class="card">
 <div class="card-title">Taxa Média de Ocupação</div>
-<div class="card-value">62%</div>
+<div class="card-value">—</div>
 </div>
 </div>
 <div class="chart-placeholder">
@@ -363,15 +535,15 @@
 <div class="cards-grid">
 <div class="card">
 <div class="card-title">Total Acumulado</div>
-<div class="card-value">3.412 acessos</div>
+<div class="card-value">—</div>
 </div>
 <div class="card" style="border-top-color: var(--color-orange);">
 <div class="card-title">Semana de Pico</div>
-<div class="card-value">Semana 2</div>
+<div class="card-value">—</div>
 </div>
 <div class="card">
 <div class="card-title">Dias Úteis Ativos</div>
-<div class="card-value">22 dias</div>
+<div class="card-value">—</div>
 </div>
 </div>
 <div class="chart-placeholder">
@@ -381,31 +553,5 @@
 </section>
 </div>
 </main>
-<script>
-        function switchReport(reportId, element) {
-            // Remove a classe ativa de todos os botões do menu
-            document.querySelectorAll('.menu-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            // Adiciona a classe ativa no botão clicado
-            element.classList.add('active');
-            
-            // Esconde todas as seções de relatórios
-            document.querySelectorAll('.report-section').forEach(section => {
-                section.classList.remove('active-report');
-            });
-            
-            // Mostra a seção desejada
-            document.getElementById(reportId).classList.add('active-report');
-            
-            // Atualiza o título do Header dinamicamente
-            const titles = {
-                'diario': 'Relatório Diário',
-                'semanal': 'Relatório Semanal',
-                'mensal': 'Relatório Mensal'
-            };
-            document.getElementById('page-title').innerText = `Dashboard > ${titles[reportId]}`;
-        }
-    </script>
+<script type="module" src="./js/controllers/dashboard.controller.js"></script>
 </body></html>
