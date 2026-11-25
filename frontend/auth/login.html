@@ -1,4 +1,4 @@
-<html lang="pt-BR" style=""><head></head><script type="module" src="js/controllers/login.controller.js"></script><body class="min-h-screen bg-gray-50 font-sans">
+<html lang="pt-BR" style=""><head></head><script type="module" src="../js/controllers/login.controller.js"></script><body class="min-h-screen bg-gray-50 font-sans">
 
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -103,19 +103,43 @@
     </script>
 <style>
         body { font-family: 'Hanken Grotesk', sans-serif; }
+
+      /* Imagem de fundo do painel esquerdo */
+      .login-brand-panel {
+        background-image:
+          linear-gradient(
+            90deg,
+            rgba(0, 65, 35, 0.55),
+            rgba(0, 75, 40, 0.15)
+          ),
+          url("../assets/images/fundo-login.png");
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
     </style>
 <!-- Main Container: Split Screen Layout -->
 <div id="loginPage" class="flex w-full min-h-screen">
 
   <!-- Painel esquerdo do Login -->
-  <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-green-900 via-green-800 to-green-600 text-white flex-col justify-between p-12">
+  <div class="login-brand-panel hidden lg:flex lg:w-1/2 text-white flex-col justify-between p-12">
 
-  <div class="flex items-center gap-3">
-    <span class="material-symbols-outlined text-4xl">
-      monitoring
-    </span>
-    <h1 class="text-2xl font-bold">OccupaControl</h1>
+  
+<div class="flex flex-col items-center gap-3 text-center">
+  <div class="flex items-center gap-4">
+    <img
+      src="../assets/images/Logo.png"
+      alt="Logotipo do OccupaControl"
+      class="w-20 h-20 object-contain"
+    />
+
+    <h1 class="text-4xl font-extrabold tracking-tight">
+      Occupa<span class="text-lime-400">Control</span>
+    </h1>
   </div>
+</div>
 
   <div>
     <h2 class="text-4xl font-bold leading-tight mb-6">
@@ -127,6 +151,39 @@
       acompanhe entradas e saídas e tome decisões
       com mais segurança e eficiência.
     </p>
+
+<!-- Funcionalidades do OccupaControl -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
+
+  <div class="bg-green-950/40 border border-lime-400/30 rounded-xl p-4 text-center backdrop-blur-sm">
+    <span class="material-symbols-outlined text-lime-400 text-4xl mb-2">
+      groups
+    </span>
+    <p class="text-sm font-semibold text-white">
+      Ocupação em tempo real
+    </p>
+  </div>
+
+  <div class="bg-green-950/40 border border-lime-400/30 rounded-xl p-4 text-center backdrop-blur-sm">
+    <span class="material-symbols-outlined text-lime-400 text-4xl mb-2">
+      monitoring
+    </span>
+    <p class="text-sm font-semibold text-white">
+      Dados e relatórios
+    </p>
+  </div>
+
+  <div class="bg-green-950/40 border border-lime-400/30 rounded-xl p-4 text-center backdrop-blur-sm">
+    <span class="material-symbols-outlined text-lime-400 text-4xl mb-2">
+      verified_user
+    </span>
+    <p class="text-sm font-semibold text-white">
+      Segurança e organização
+    </p>
+  </div>
+
+</div>
+
   </div>
 
   <div class="text-sm text-green-100">
@@ -142,7 +199,7 @@
 
   <div class="flex justify-center mb-4">
     <img
-      src="assets/images/Logo.png"
+      src="../assets/images/Logo.png"
       alt="Logotipo do OccupaControl"
       class="h-20 w-auto max-w-full object-contain"
     />
@@ -200,7 +257,12 @@
         aria-live="polite"
         class="hidden text-sm text-red-600 text-center"
     ></p>
-<div class="text-center mt-4"><p class="font-body-md text-body-md text-on-surface-variant">Não tem uma conta? <a class="text-primary font-semibold hover:underline cursor-pointer" href="registro.html">Cadastre-se</a></p></div></form>
+    <a
+      href="../consulta/consulta.html"
+      style="display: block; text-align: center; margin-top: 16px; color: #326800; font-weight: 600; text-decoration: none;"
+    >
+      Consultar ocupação sem login
+    </a>
 <!-- System Status Indicator -->
 <div class="mt-8 flex items-center justify-center gap-2 text-on-surface-variant bg-surface-container-low py-2 px-4 rounded-full w-max mx-auto">
 <div class="w-2 h-2 rounded-full bg-secondary-fixed-dim animate-pulse"></div>

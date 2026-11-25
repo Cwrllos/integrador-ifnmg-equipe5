@@ -22,14 +22,14 @@ async function verificarSessao() {
     );
 
     if (!resposta.ok) {
-      window.location.replace("login.html");
+      window.location.replace("../auth/login.html");
       return false;
     }
 
     return true;
   } catch (erro) {
     console.error("Erro ao verificar sessão:", erro);
-    window.location.replace("login.html");
+    window.location.replace("../auth/login.html");
     return false;
   }
 }
@@ -62,7 +62,7 @@ async function realizarLogout() {
   try {
     await encerrarSessao();
 
-    window.location.replace("login.html");
+    window.location.replace("../auth/login.html");
   } catch (erro) {
     alert(erro.message || "Erro ao sair do sistema.");
 

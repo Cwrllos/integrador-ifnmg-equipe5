@@ -13,7 +13,7 @@ async function realizarLogin(evento) {
 
     await autenticarAdministrador(email, senha);
 
-    window.location.href = "dashboard.html";
+    window.location.href = "../dashboard/dashboard.html";
   } catch (erro) {
     LoginView.mostrarErro(
       erro.message || "Não foi possível realizar o login."
