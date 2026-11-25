@@ -29,12 +29,12 @@ async function main() {
     },
     update: {
       nome: "Laboratório TADS",
-      max_pessoas: 200,
+      max_pessoas: 40,
       id_adm: administrador.id_adm,
     },
     create: {
       nome: "Laboratório TADS",
-      max_pessoas: 200,
+      max_pessoas: 40,
       id_adm: administrador.id_adm,
     },
   });
@@ -60,12 +60,12 @@ async function main() {
       },
     },
     update: {
-      horario_inicio: "08:00",
+      horario_inicio: "19:00",
       horario_fim: "22:00",
     },
     create: {
       tipo: "ENTRADA",
-      horario_inicio: "08:00",
+      horario_inicio: "19:00",
       horario_fim: "22:00",
       id_ambiente: ambiente.id_ambiente,
     },
@@ -79,12 +79,12 @@ async function main() {
       },
     },
     update: {
-      horario_inicio: "08:00",
+      horario_inicio: "19:00",
       horario_fim: "22:00",
     },
     create: {
       tipo: "SAIDA",
-      horario_inicio: "08:00",
+      horario_inicio: "19:00",
       horario_fim: "22:00",
       id_ambiente: ambiente.id_ambiente,
     },

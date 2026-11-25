@@ -1,24 +1,39 @@
-import type { Request, Response } from "express";
-
 import {
-  registrarLeitura,
-  listarLeituras,
-} from "../models/leitura.model.js";
+  registrarLeituraService,
+  listarLeiturasService,
+} from "../services/leitura.service.js";
 
-export async function criarLeitura(req: Request, res: Response) {
+export async function criarLeitura(req, res) {
   try {
-    const sensorId = req.body.sensorId ?? req.body.id_sensor;
-    const tipoRecebido = req.body.tipo;
+   const sensorId = req.body?.sensorId ?? req.body?.id_sensor;
+   const tipoRecebido = req.body?.tipo;
 
-    if (!sensorId) {
+    if (
+      tipoRecebido !== undefined &&
+      tipoRecebido !== "ENTRADA" &&
+      tipoRecebido !== "SAIDA"
+    ) {
       return res.status(400).json({
-        erro: "O campo sensorId é obrigatório.",
+        erro: "O tipo deve ser ENTRADA ou SAIDA.",
       });
     }
 
-    const resultado = await registrarLeitura({
+    if (
+      sensorId === null ||
+      sensorId === undefined ||
+      String(sensorId).trim() === "" ||
+      !Number.isSafeInteger(Number(sensorId)) ||
+      Number(sensorId) <= 0
+    ) {
+      return res.status(400).json({
+        erro: "O ID do sensor deve ser um número inteiro positivo válido.",
+      });
+    }
+
+    const resultado = await registrarLeituraService({
       sensorId: Number(sensorId),
       tipoRecebido,
+      origem: "API",
     });
 
     return res.status(201).json({
@@ -55,9 +70,9 @@ export async function criarLeitura(req: Request, res: Response) {
   }
 }
 
-export async function listarLeiturasController(req: Request, res: Response) {
+export async function listarLeiturasController(req, res) {
   try {
-    const leituras = await listarLeituras();
+    const leituras = await listarLeiturasService();
 
     return res.json({
       dados: leituras,

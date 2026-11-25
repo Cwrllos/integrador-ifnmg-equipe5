@@ -12,12 +12,17 @@ enum TipoLeitura {
   SAIDA
 }
 
+enum OrigemLeitura {
+  API
+  SERIAL_USB
+}
+
 model Administrador {
   id_adm    Int        @id @default(autoincrement())
   nome      String
   email     String     @unique
   senha     String
-  empresa   String
+  departamento String @map("empresa")
   ambientes Ambiente[]
 
   @@map("administradores")
@@ -55,6 +60,7 @@ model Sensor {
 model Leitura {
   id_leitura  Int         @id @default(autoincrement())
   tipo        TipoLeitura
+  origem      OrigemLeitura @default(API)
   data_hora   DateTime    @default(now())
   id_sensor   Int
   id_ambiente Int
