@@ -1,40 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `Administrador` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Ambiente` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Leitura` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `LogAlerta` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Sensor` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropForeignKey
-ALTER TABLE `Ambiente` DROP FOREIGN KEY `Ambiente_id_adm_fkey`;
-
--- DropForeignKey
-ALTER TABLE `Leitura` DROP FOREIGN KEY `Leitura_id_sensor_fkey`;
-
--- DropForeignKey
-ALTER TABLE `LogAlerta` DROP FOREIGN KEY `LogAlerta_id_sensor_fkey`;
-
--- DropForeignKey
-ALTER TABLE `Sensor` DROP FOREIGN KEY `Sensor_id_ambiente_fkey`;
-
--- DropTable
-DROP TABLE `Administrador`;
-
--- DropTable
-DROP TABLE `Ambiente`;
-
--- DropTable
-DROP TABLE `Leitura`;
-
--- DropTable
-DROP TABLE `LogAlerta`;
-
--- DropTable
-DROP TABLE `Sensor`;
-
 -- CreateTable
 CREATE TABLE `administradores` (
     `id_adm` INTEGER NOT NULL AUTO_INCREMENT,
@@ -73,6 +36,7 @@ CREATE TABLE `sensores` (
 CREATE TABLE `leituras` (
     `id_leitura` INTEGER NOT NULL AUTO_INCREMENT,
     `tipo` ENUM('ENTRADA', 'SAIDA') NOT NULL,
+    `origem` ENUM('API', 'SERIAL_USB') NOT NULL DEFAULT 'API',
     `data_hora` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `id_sensor` INTEGER NOT NULL,
     `id_ambiente` INTEGER NOT NULL,
