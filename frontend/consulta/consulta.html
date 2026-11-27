@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consulta de Ocupação | OccupaControl</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f5f7fa;
+      color: #263238;
+      font-family: Arial, sans-serif;
+    }
+
+    .cabecalho {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e9e5;
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .marca {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .marca img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .marca h1 {
+      font-size: 22px;
+      margin: 0;
+      color: #285c19;
+    }
+
+    .acesso-admin {
+      color: #285c19;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 65px auto;
+      padding: 0 20px;
+    }
+
+    .introducao {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .introducao h2 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .introducao p {
+      color: #718096;
+      line-height: 1.6;
+    }
+
+    .painel {
+      background: white;
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    }
+
+    .laboratorio {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    .indicadores {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .indicador {
+      background: #f5f9f3;
+      border-radius: 14px;
+      padding: 25px;
+    }
+
+    .indicador span {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .indicador strong {
+      display: block;
+      color: #285c19;
+      font-size: 42px;
+      margin-top: 10px;
+    }
+
+    .ocupacao {
+      margin-top: 35px;
+    }
+
+    .ocupacao-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+
+    .barra {
+      height: 14px;
+      background: #e7ede4;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .barra-progresso {
+      height: 100%;
+      width: 0%;
+      background: #398d35;
+      border-radius: 20px;
+      transition: width 0.5s ease;
+    }
+
+    .status {
+      margin-top: 20px;
+      color: #398d35;
+      font-weight: bold;
+    }
+
+    .atualizacao {
+      margin-top: 25px;
+      text-align: center;
+      color: #718096;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      .cabecalho {
+        padding: 15px;
+      }
+
+      .marca h1 {
+        font-size: 18px;
+      }
+
+      main {
+        margin: 35px auto;
+      }
+
+      .introducao h2 {
+        font-size: 24px;
+      }
+
+      .painel {
+        padding: 20px;
+      }
+
+      .indicadores {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="cabecalho">
+    <div class="marca">
+      <img src="../assets/images/Logo.png" alt="Logo OccupaControl" />
+      <h1>OccupaControl</h1>
+    </div>
+
+    <a class="acesso-admin" href="../auth/login.html">
+      Área administrativa
+    </a>
+  </header>
+
+  <main>
+    <section class="introducao">
+      <h2>Consulta de Ocupação</h2>
+      <p>
+        Acompanhe a disponibilidade do laboratório de informática
+        do IFNMG em tempo real.
+      </p>
+    </section>
+
+    <section class="painel">
+      <div class="laboratorio" id="nomeLaboratorio">
+        Carregando laboratório...
+      </div>
+
+      <div class="indicadores">
+        <div class="indicador">
+          <span>Pessoas presentes</span>
+          <strong id="pessoasPresentes">—</strong>
+        </div>
+
+        <div class="indicador">
+          <span>Vagas disponíveis</span>
+          <strong id="vagasDisponiveis">—</strong>
+        </div>
+      </div>
+
+      <div class="ocupacao">
+        <div class="ocupacao-info">
+          <span>Ocupação do laboratório</span>
+          <span id="percentualOcupacao">—</span>
+        </div>
+
+        <div class="barra">
+          <div class="barra-progresso" id="barraOcupacao"></div>
+        </div>
+      </div>
+
+      <p class="status" id="statusLaboratorio">
+        Consultando disponibilidade...
+      </p>
+
+      <p class="atualizacao" id="ultimaAtualizacao">
+        Aguardando dados...
+      </p>
+    </section>
+  </main>
+
+  <script
+    type="module"
+    src="../js/controllers/consulta.controller.js"
+  ></script>
+</body>
+</html>

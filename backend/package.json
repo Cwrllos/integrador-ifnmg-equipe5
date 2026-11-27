@@ -3,15 +3,14 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/servidor.ts",
-    "build": "tsc",
-    "start": "node dist/servidor.js",
+    "dev": "node --watch src/servidor.js",
+    "start": "node src/servidor.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "seed": "prisma db seed"
   },
   "prisma": {
-    "seed": "tsx prisma/seed.ts"
+    "seed": "node prisma/seed.js"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",
@@ -20,15 +19,10 @@
     "cors": "^2.8.5",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "express-session": "^1.19.0",
     "serialport": "^13.0.0"
   },
   "devDependencies": {
-    "@types/bcryptjs": "^2.4.6",
-    "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.6",
-    "@types/node": "^26.0.1",
-    "prisma": "^6.19.3",
-    "tsx": "^4.22.4",
-    "typescript": "^6.0.3"
+    "prisma": "^6.19.3"
   }
 }

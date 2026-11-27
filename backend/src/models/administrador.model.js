@@ -6,7 +6,7 @@ export async function criarAdministrador(dados) {
       nome: dados.nome,
       email: dados.email,
       senha: dados.senha,
-      empresa: dados.empresa,
+      departamento: dados.departamento,
     },
   });
 }
