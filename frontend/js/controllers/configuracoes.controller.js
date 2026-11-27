@@ -4,11 +4,65 @@ import {
   salvarTema,
   buscarMeuPerfil,
   atualizarMeuPerfil,
+  buscarStatusSistema,
+  buscarAnaliseMensal,
 } from "../models/configuracoes.model.js";
 
 import { ConfiguracoesView } from "../views/configuracoes.view.js";
 
 const view = new ConfiguracoesView();
+
+
+let consultandoStatus = false;
+
+async function carregarStatusSistema() {
+  if (consultandoStatus) return;
+
+  const painel = document.getElementById("painelStatusSistema");
+
+  if (!painel) return;
+
+  consultandoStatus = true;
+
+  try {
+    const dados = await buscarStatusSistema();
+    view.renderizarStatusSistema(dados);
+  } catch (erro) {
+    console.error("Erro ao consultar status:", erro);
+
+    painel.textContent =
+      `Não foi possível consultar o status do sistema: ${erro.message}`;
+  } finally {
+    consultandoStatus = false;
+  }
+}
+
+
+let carregandoAnalise = false;
+
+async function carregarAnaliseMensal() {
+  if (carregandoAnalise) return;
+
+  const painel = document.getElementById("painelAnaliseDados");
+
+  if (!painel) return;
+
+  carregandoAnalise = true;
+
+  try {
+    const dados = await buscarAnaliseMensal(1);
+
+    view.renderizarAnaliseMensal(dados);
+  } catch (erro) {
+    console.error("Erro ao carregar análise mensal:", erro);
+
+    painel.textContent =
+      `Não foi possível carregar a análise: ${erro.message}`;
+  } finally {
+    carregandoAnalise = false;
+  }
+}
+
 
 function selecionarTema(tema) {
   salvarTema(tema);
@@ -39,10 +93,6 @@ async function salvarPerfil() {
   }
 }
 
-
-
-
-
 async function iniciarConfiguracoes() {
   try {
     const resposta = await fetch(
@@ -68,6 +118,35 @@ async function iniciarConfiguracoes() {
 
     // Aplica o tema salvo após verificar a sessão
     view.aplicarTema(obterTemaSalvo());
+
+    // Carrega os indicadores quando o administrador abre a aba Status.
+    
+    document.querySelectorAll(".menu-item").forEach((item) => {
+      item.addEventListener("click", () => {
+        const acao = item.getAttribute("onclick") ?? "";
+
+        if (acao.includes("'status'")) {
+          carregarStatusSistema();
+        }
+
+        if (acao.includes("'analise'")) {
+          carregarAnaliseMensal();
+        }
+      });
+    });
+
+
+
+    // Atualiza o status a cada 10 segundos,
+    // somente enquanto a aba Status estiver aberta.
+    setInterval(() => {
+      const abaStatus = document.getElementById("aba-status");
+
+      if (abaStatus && !abaStatus.classList.contains("hidden")) {
+        carregarStatusSistema();
+      }
+    }, 10000);
+
 
     // Botão Modo Claro
     view.botaoClaro?.addEventListener("click", () => {

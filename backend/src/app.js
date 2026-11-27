@@ -5,6 +5,7 @@ import leituraRoutes from "./routes/leitura.routes.js";
 import dashboardRoutes from "./routes/dashboard.routes.js";
 import ambienteRoutes from "./routes/ambiente.routes.js";
 import administradorRoutes from "./routes/administrador.routes.js";
+import statusRoutes from "./routes/status.routes.js";
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use("/leituras", leituraRoutes);
 app.use("/dashboard", dashboardRoutes);
 app.use("/ambientes", ambienteRoutes);
 app.use("/administradores", administradorRoutes);
+app.use("/status", statusRoutes);
 
 app.use((req, res) => {
   return res.status(404).json({

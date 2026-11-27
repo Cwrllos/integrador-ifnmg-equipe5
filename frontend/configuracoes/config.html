@@ -297,21 +297,61 @@
 
         <!-- Abas Novas -->
 
-        <!-- Aba Status do Sistema -->
-        <div id="aba-status" class="conteudo-aba hidden max-w-6xl mx-auto">
-            <div class="mb-8"><h2 class="font-headline-lg text-headline-lg text-on-surface">Status do Sistema</h2></div>
-            <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-card-padding shadow-sm h-64 flex items-center justify-center">
-                <p class="text-on-surface-variant font-label-lg">Gráficos de servidor e rede em construção...</p>
-            </div>
-        </div>
+        
+<!-- Aba Status do Sistema -->
+<div id="aba-status" class="conteudo-aba hidden max-w-6xl mx-auto">
 
-        <!-- Aba Análise -->
-        <div id="aba-analise" class="conteudo-aba hidden max-w-6xl mx-auto">
-            <div class="mb-8"><h2 class="font-headline-lg text-headline-lg text-on-surface">Análise de Dados</h2></div>
-            <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-card-padding shadow-sm h-64 flex items-center justify-center">
-                <p class="text-on-surface-variant font-label-lg">Relatórios e métricas em construção...</p>
-            </div>
-        </div>
+    <div class="mb-8">
+        <h2 class="font-headline-lg text-headline-lg text-on-surface">
+            Status do Sistema
+        </h2>
+
+        <p class="text-on-surface-variant mt-2">
+            Acompanhe o funcionamento dos serviços do OccupaControl.
+        </p>
+    </div>
+
+    <!-- Painel atualizado com dados reais da API -->
+    <div
+        id="painelStatusSistema"
+        class="bg-surface-container-lowest border border-outline-variant rounded-xl p-card-padding shadow-sm"
+        aria-live="polite"
+    >
+        <p class="text-on-surface-variant">
+            Aguardando verificação do sistema...
+        </p>
+    </div>
+
+</div>
+
+
+        
+<!-- Aba Análise -->
+<div id="aba-analise" class="conteudo-aba hidden max-w-6xl mx-auto">
+
+    <div class="mb-8">
+        <h2 class="font-headline-lg text-headline-lg text-on-surface">
+            Análise de Dados
+        </h2>
+
+        <p class="text-on-surface-variant mt-2">
+            Indicadores e tendências de movimentação dos ambientes.
+        </p>
+    </div>
+
+    <!-- Painel de análise com dados reais do MySQL -->
+    <div
+        id="painelAnaliseDados"
+        class="bg-surface-container-lowest border border-outline-variant rounded-xl p-card-padding shadow-sm"
+        aria-live="polite"
+    >
+        <p class="text-on-surface-variant">
+            Aguardando carregamento dos indicadores...
+        </p>
+    </div>
+
+</div>
+
 
     </main>
 
@@ -397,5 +437,7 @@
         }
     </script>
     <script type="module" src="../js/controllers/configuracoes.controller.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+
 </body>
 </html>

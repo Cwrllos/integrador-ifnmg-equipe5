@@ -1,8 +1,13 @@
-// CONTROLLER: coordena a View e o Model e trata eventos.
+
+// CONTROLLER: coordena Model e View do Dashboard.
+
 import {
   buscarDadosDashboard,
+  buscarDadosDashboardSemanal,
+  buscarDadosDashboardMensal,
   encerrarSessao,
-} from '../models/dashboard.model.js';
+} from "../models/dashboard.model.js";
+
 import {
   mostrarRelatorio,
   renderizarDashboard,
@@ -10,8 +15,18 @@ import {
   renderizarGraficoMovimentacao,
   renderizarHorarioPico,
   renderizarBarraOcupacao,
-} from '../views/dashboard.view.js';
+  renderizarDashboardSemanal,
+  renderizarDashboardMensal,
+} from "../views/dashboard.view.js";
 
+const ID_AMBIENTE = 1;
+const INTERVALO_ATUALIZACAO = 10000;
+
+let relatorioAtivo = "diario";
+let carregando = false;
+let versaoNavegacao = 0;
+
+// Verifica se o administrador está autenticado.
 async function verificarSessao() {
   try {
     const resposta = await fetch(
@@ -34,26 +49,78 @@ async function verificarSessao() {
   }
 }
 
-let carregando = false;
-
-async function atualizarDashboard() {
+// Atualiza apenas o relatório selecionado.
+async function atualizarRelatorioAtivo() {
   if (carregando) return;
-  carregando = true;
-  try {
-    const dados = await buscarDadosDashboard(1);
 
-    renderizarDashboard(dados);
-    renderizarGraficoMovimentacao(dados.movimentacao_por_hora);
-    renderizarHorarioPico(dados.movimentacao_por_hora);
-    renderizarBarraOcupacao(dados);
-    
+  carregando = true;
+
+  const tipo = relatorioAtivo;
+  const versao = versaoNavegacao;
+
+  try {
+    if (tipo === "diario") {
+      const dados = await buscarDadosDashboard(ID_AMBIENTE);
+
+      // Evita atualizar uma tela que deixou de estar ativa.
+      if (versao !== versaoNavegacao) return;
+
+      renderizarDashboard(dados);
+      renderizarGraficoMovimentacao(dados.movimentacao_por_hora);
+      renderizarHorarioPico(dados.movimentacao_por_hora);
+      renderizarBarraOcupacao(dados);
+    }
+
+    if (tipo === "semanal") {
+      const dados = await buscarDadosDashboardSemanal(ID_AMBIENTE);
+
+      if (versao !== versaoNavegacao) return;
+
+      renderizarDashboardSemanal(dados);
+
+      atualizarResumo(
+        dados.ambiente.nome,
+        "Semana atual",
+        dados.total_entradas,
+        dados.total_saidas
+      );
+    }
+
+    if (tipo === "mensal") {
+      const dados = await buscarDadosDashboardMensal(ID_AMBIENTE);
+
+      if (versao !== versaoNavegacao) return;
+
+      renderizarDashboardMensal(dados);
+
+      atualizarResumo(
+        dados.ambiente.nome,
+        "Mês atual",
+        dados.total_entradas,
+        dados.total_saidas
+      );
+    }
   } catch (erro) {
-    mostrarErroDashboard(erro.message);
+    if (versao === versaoNavegacao) {
+      mostrarErroDashboard(erro.message);
+    }
   } finally {
     carregando = false;
   }
 }
 
+// Atualiza o texto informativo do relatório.
+function atualizarResumo(nomeAmbiente, periodo, entradas, saidas) {
+  const elemento = document.getElementById("dashboard-status");
+
+  if (!elemento) return;
+
+  elemento.textContent =
+    `${nomeAmbiente} • ${periodo} • ` +
+    `${entradas} entradas • ${saidas} saídas`;
+}
+
+// Faz logout com segurança.
 async function realizarLogout() {
   const botao = document.getElementById("logoutButton");
 
@@ -61,7 +128,6 @@ async function realizarLogout() {
 
   try {
     await encerrarSessao();
-
     window.location.replace("../auth/login.html");
   } catch (erro) {
     alert(erro.message || "Erro ao sair do sistema.");
@@ -70,23 +136,40 @@ async function realizarLogout() {
   }
 }
 
+// Inicializa o Dashboard.
 async function inicializarDashboard() {
   const autenticado = await verificarSessao();
 
   if (!autenticado) return;
+
   const botaoSair = document.getElementById("logoutButton");
 
-if (botaoSair) {
-  botaoSair.addEventListener("click", realizarLogout);
-}
-  document.querySelectorAll('.menu-item[data-report]').forEach(item => {
-    item.addEventListener('click', () => {
-      mostrarRelatorio(item.dataset.report, item);
+  if (botaoSair) {
+    botaoSair.addEventListener("click", realizarLogout);
+  }
+
+  // Navegação entre os três relatórios.
+  document.querySelectorAll(".menu-item[data-report]").forEach((item) => {
+    item.addEventListener("click", () => {
+      const tipo = item.dataset.report;
+
+      if (!["diario", "semanal", "mensal"].includes(tipo)) {
+        return;
+      }
+
+      relatorioAtivo = tipo;
+      versaoNavegacao++;
+
+      mostrarRelatorio(tipo, item);
+      atualizarRelatorioAtivo();
     });
   });
 
-  atualizarDashboard();
-  setInterval(atualizarDashboard, 10000);
+  // Primeiro carregamento.
+  await atualizarRelatorioAtivo();
+
+  // Atualização automática.
+  setInterval(atualizarRelatorioAtivo, INTERVALO_ATUALIZACAO);
 }
 
 inicializarDashboard();

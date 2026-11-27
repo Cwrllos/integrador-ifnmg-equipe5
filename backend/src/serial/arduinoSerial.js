@@ -4,6 +4,22 @@ import { ReadlineParser } from "@serialport/parser-readline";
 import { registrarLeituraService } from "../services/leitura.service.js";
 import { buscarDashboardAmbiente } from "../models/dashboard.model.js";
 
+
+let serialConectada = false;
+let ultimaMensagemArduino = null;
+
+export function obterStatusArduino() {
+  const habilitado = process.env.ENABLE_SERIAL === "true";
+
+  return {
+    habilitado,
+    conectado: habilitado && serialConectada,
+    porta: process.env.ARDUINO_SERIAL_PORT || null,
+    ultima_mensagem: ultimaMensagemArduino,
+  };
+}
+
+
 export function interpretarLinhaSerial(linha) {
   const texto = linha.trim();
 
@@ -70,9 +86,17 @@ export function iniciarLeituraSerial() {
     })
   );
 
-    serial.on("open", () => {
+    
+  serial.on("open", () => {
+    serialConectada = true;
     console.log(`Serial conectada em ${porta} com baud rate ${baudRate}`);
   });
+
+  serial.on("close", () => {
+    serialConectada = false;
+    console.log("Conexão serial encerrada.");
+  });
+
 
   serial.on("error", (error) => {
     console.error("Erro na porta serial:", error.message);
@@ -96,8 +120,10 @@ export function iniciarLeituraSerial() {
   // Processa as mensagens do Arduino em sequência
   let filaProcessamento = Promise.resolve();
 
-    parser.on("data", (linha) => {
-      filaProcessamento = filaProcessamento.then(async () => {
+  parser.on("data", (linha) => {
+    ultimaMensagemArduino = new Date().toISOString();
+
+  filaProcessamento = filaProcessamento.then(async () => {
     try {
       // Aguarda o Arduino informar que terminou a inicialização
       if (linha.trim() === "ARDUINO_READY") {

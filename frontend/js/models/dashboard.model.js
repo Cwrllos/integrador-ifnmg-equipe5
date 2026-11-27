@@ -42,3 +42,45 @@ export async function encerrarSessao() {
 
   return resposta.json();
 }
+
+export async function buscarDadosDashboardSemanal(idAmbiente) {
+  const resposta = await fetch(
+    `http://127.0.0.1:3000/dashboard/semanal/ambiente/${idAmbiente}`,
+    {
+      method: "GET",
+      credentials: "include",
+      cache: "no-store",
+    }
+  );
+
+  const resultado = await resposta.json().catch(() => ({}));
+
+  if (!resposta.ok) {
+    throw new Error(
+      resultado.erro || "Não foi possível carregar o relatório semanal."
+    );
+  }
+
+  return resultado.dados;
+}
+
+export async function buscarDadosDashboardMensal(idAmbiente) {
+  const resposta = await fetch(
+    `http://127.0.0.1:3000/dashboard/mensal/ambiente/${idAmbiente}`,
+    {
+      method: "GET",
+      credentials: "include",
+      cache: "no-store",
+    }
+  );
+
+  const resultado = await resposta.json().catch(() => ({}));
+
+  if (!resposta.ok) {
+    throw new Error(
+      resultado.erro || "Não foi possível carregar o relatório mensal."
+    );
+  }
+
+  return resultado.dados;
+}

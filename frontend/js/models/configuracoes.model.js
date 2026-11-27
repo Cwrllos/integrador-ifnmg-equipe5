@@ -63,3 +63,42 @@ export async function atualizarMeuPerfil(dados) {
 
   return resultado;
 }
+
+export async function buscarStatusSistema() {
+  const resposta = await fetch("http://127.0.0.1:3000/status", {
+    method: "GET",
+    credentials: "include",
+    cache: "no-store",
+  });
+
+  const resultado = await resposta.json().catch(() => ({}));
+
+  if (!resposta.ok) {
+    throw new Error(
+      resultado.erro || "Não foi possível consultar o status do sistema."
+    );
+  }
+
+  return resultado.dados;
+}
+
+export async function buscarAnaliseMensal(idAmbiente = 1) {
+  const resposta = await fetch(
+    `http://127.0.0.1:3000/dashboard/mensal/ambiente/${idAmbiente}`,
+    {
+      method: "GET",
+      credentials: "include",
+      cache: "no-store",
+    }
+  );
+
+  const resultado = await resposta.json().catch(() => ({}));
+
+  if (!resposta.ok) {
+    throw new Error(
+      resultado.erro || "Não foi possível carregar a análise mensal."
+    );
+  }
+
+  return resultado.dados;
+}
