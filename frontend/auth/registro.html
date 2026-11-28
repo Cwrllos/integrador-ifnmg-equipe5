@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="pt-BR" style=""><head>
+<html lang="pt-BR" style"="><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>OccupaControl - Novo Registro</title>
@@ -222,13 +222,31 @@
 </button>
 </div>
 </form>
-<!-- Back to Login -->
-<div class="mt-8 pt-6 border-t border-outline-variant text-center">
-<a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary hover:text-primary-container transition-colors cursor-pointer" href="login.html">Voltar para o Login</a>
-<span class="material-symbols-outlined text-sm">arrow_back</span>
-                    Voltar para o Login
-                </a>
+
+<!-- Navegação da página de cadastro -->
+<div class="mt-8 pt-6 border-t border-outline-variant flex flex-col gap-3">
+
+  <!-- Retornar ao Dashboard -->
+  <a
+    href="../dashboard/dashboard.html"
+    class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-[#326800] hover:bg-[#418400] text-white font-semibold transition-colors"
+  >
+    <span class="material-symbols-outlined text-sm">
+      arrow_back
+    </span>
+    Voltar ao Dashboard
+  </a>
+
+  <!-- Retornar ao Login -->
+  <a
+    href="login.html"
+    class="w-full flex items-center justify-center gap-2 px-4 py-2 text-primary hover:text-primary-container font-semibold transition-colors"
+  >
+    Voltar para o Login
+  </a>
+
 </div>
+
 </div>
 <!-- Footer Info -->
 <div class="mt-8 text-center text-on-surface-variant font-label-sm text-label-sm opacity-70">© 2024 OccupaControl Logistics. Acesso Restrito.</div>
